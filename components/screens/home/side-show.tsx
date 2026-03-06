@@ -28,8 +28,9 @@ export default function SlideShow() {
 
   return (
     <View className='px-3 '>
-     
-      {loading ? (<Skeleton width={"100%"} height={300} />):(
+      {loading ? (
+        <Skeleton width={"100%"} height={200} />
+      ):(
          <View style={{ height: 200 }}>
         <Swiper
           autoplay

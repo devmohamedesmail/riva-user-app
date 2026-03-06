@@ -372,7 +372,10 @@
     "noAreaFound": "لم يتم العثور على منطقة",
     "noAreaFoundDescription": "لم نتمكن من العثور على أي مناطق توصيل تطابق عنوانك.",
     "selectyourArea": "اختر منطقتك",
-    "searchArea": "ابحث في المنطقة..."
+    "searchArea": "ابحث في المنطقة...",
+    "address": "العنوان",
+    "enterAddress": "أدخل عنوانك",
+    "areaRequired": "المنطقة مطلوبة"
   },
   "orders": {
     "myOrders": "طلباتي",

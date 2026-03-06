@@ -372,7 +372,10 @@
     "noAreaFound": "No area found",
     "noAreaFoundDescription": "We couldn't find any delivery areas matching your address.",
     "selectyourArea": "Select your area",
-    "searchArea": "Search area..."
+    "searchArea": "Search area...",
+    "address":"Address",
+    "enterAddress":"Enter your address",
+    "areaRequired":"Area is required"
   },
   "orders": {
     "myOrders": "My Orders",

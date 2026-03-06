@@ -52,12 +52,16 @@ export default function Checkout() {
     initialValues: {
       phone: "",
       address: "",
+      area_id:"",
+      area_name:""
     },
 
     validationSchema: Yup.object({
       phone: Yup.string()
         .required(t("order.phoneRequired"))
         .min(6, t("order.phoneMin")),
+      area_id: Yup.string()
+        .required(t("order.areaRequired")), 
       address: Yup.string()
         .required(t("order.addressRequired"))
     }),
@@ -91,6 +95,8 @@ export default function Checkout() {
           total_price: Number(selectedArea?.price) + Number(totalPrice.toFixed(2)),
           delivery_address: values.address,
           phone: values.phone,
+          area_id : selectedArea?.id,
+          area_name : selectedArea?.name,
         });
 
         setLoading(false);
@@ -115,6 +121,29 @@ export default function Checkout() {
         <Header title={t('checkout.title')} />
         <ScrollView>
           <View className='p-4 bg-white dark:bg-card-dark'>
+
+
+
+             <TouchableOpacity
+              onPress={() => bottomSheetRef.current?.expand()}
+              className="bg-primary rounded-xl p-4 my-4 flex-row items-center justify-between shadow-lg active:opacity-80"
+            >
+              <View className="flex-row items-center flex-1">
+                <AntDesign name="environment" size={20} color="white" />
+                <Text className="text-white font-semibold text-base ml-3">
+                  {formik.values.address || t("order.selectyourArea")}
+                </Text>
+              </View>
+              <AntDesign name="down" size={16} color="white" />
+            </TouchableOpacity>
+
+            {formik.touched.area_id && formik.errors.area_id ? (
+              <Text className="text-red-500 text-sm mt-1">
+                {formik.errors.area_id}
+              </Text>
+            ) : null}
+
+
             <Input
               label={t("order.phoneNumber")}
               placeholder={t("order.enterPhoneNumber")}
@@ -127,24 +156,21 @@ export default function Checkout() {
               }
             />
 
-            <TouchableOpacity
-              onPress={() => bottomSheetRef.current?.expand()}
-              className="bg-primary rounded-xl p-4 mt-2 flex-row items-center justify-between shadow-lg active:opacity-80"
-            >
-              <View className="flex-row items-center flex-1">
-                <AntDesign name="environment" size={20} color="white" />
-                <Text className="text-white font-semibold text-base ml-3">
-                  {formik.values.address || t("order.selectyourArea")}
-                </Text>
-              </View>
-              <AntDesign name="down" size={16} color="white" />
-            </TouchableOpacity>
+             <Input
+              label={t("order.address")}
+              placeholder={t("order.enterAddress")}
+              value={formik.values.address}
+              onChangeText={formik.handleChange("address")}
+              error={
+                formik.touched.address && formik.errors.address
+                  ? formik.errors.phone
+                  : undefined
+              }
+            />
 
-            {formik.touched.address && formik.errors.address ? (
-              <Text className="text-red-500 text-sm mt-1">
-                {formik.errors.address}
-              </Text>
-            ) : null}
+           
+
+            
 
 
 
@@ -202,7 +228,8 @@ export default function Checkout() {
               filteredAreas.map((area: any, index: number) => (
                 <TouchableOpacity
                   onPress={() => {
-                    formik.setFieldValue("address", area.name);
+                    formik.setFieldValue("area_id", area.id);
+                    formik.setFieldValue("area_name", area.name);
                     setSelectedArea(area);
                     setModalVisible(false);
                   }}

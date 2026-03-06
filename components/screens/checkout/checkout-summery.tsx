@@ -34,10 +34,11 @@ export default function CheckoutSummery({selectedArea}: {selectedArea: any}) {
               <Text className="text-lg font-bold text-gray-900">
                 {t("order.total")}
               </Text>
-              <Text className="text-lg font-bold text-gray-900">
+             
+              {selectedArea ? ( <Text className="text-lg font-bold text-gray-900">
                 {config.CurrencySymbol}{" "} {" "} 
                 {Number(selectedArea?.price) + Number(totalPrice.toFixed(2))}
-              </Text>
+              </Text>) : (<></>)}
             </View>
           </View>
         </View>
