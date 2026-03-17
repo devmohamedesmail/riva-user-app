@@ -7,7 +7,7 @@
     "icon": "./assets/images/icon.png",
     "scheme": "tawsila",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    // "newArchEnabled": true,
     "splash": {
       "image": "./assets/images/splash-icon.png",
       "resizeMode": "contain",
@@ -30,7 +30,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true,
+      // "edgeToEdgeEnabled": true,
       "package": "com.dev.mohamed.esmail.tawsilaapp",
       "versionCode": 16,
       "permissions": [

@@ -6,6 +6,7 @@ import { usePlace } from '@/hooks/usePlace';
 import { config } from '@/constants/config';
 import Skeleton from '@/components/ui/skeleton';
 import StoreTypeItem from './store-type-item';
+import { useStoreTypes } from '@/hooks/useStoreTypes';
 
 interface StoreType {
   id: number;
@@ -18,33 +19,9 @@ interface StoreType {
 export default function StoreTypesSection() {
 
     const { t, i18n } = useTranslation();
-    const { selectedPlace } = usePlace();
-    const [storeTypes, setStoreTypes] = useState<StoreType[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<any>(null);
+    const { data, isLoading } = useStoreTypes();
 
-
-    useEffect(() => {
-        if (!selectedPlace) return;
-
-        const fetchStoreTypes = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get(`${config.URL}/places/storetype/${selectedPlace.id}`);
-                setStoreTypes(response.data);
-            } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchStoreTypes();
-    }, [selectedPlace]);
-
-    if (!selectedPlace) return null;
-
-    if (loading) {
+    if (isLoading) {
         return (
             <View className='py-10'>
                 <View className='flex flex-row justify-between gap-1 flex-wrap mb-4 px-5'>
@@ -61,14 +38,14 @@ export default function StoreTypesSection() {
 
 
     return (
-        <View className='mb-6'>
+        <View className='mb-1'>
             <Text
                 className={`text-xl font-extrabold py-5 text-black dark:text-white my-1 px-5 ${i18n.language === 'ar' ? 'text-right' : 'text-left'}`}    
             >
                 {t('home.store_types_title')}
             </Text>
             <View className={`flex flex-row justify-start flex-wrap mb-4 mt-1 px-3 gap-2 ${i18n.language === 'ar' ? 'flex-row-reverse' : ''}`}>
-                {storeTypes && storeTypes.map((storeType) => (
+                {data && data.map((storeType:StoreType) => (
                     <StoreTypeItem key={storeType.id} storeType={storeType} />
                 ))}
             </View>

@@ -6,6 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { useTheme } from '@/hooks/useTheme'
 import colors from '@/constants/colors'
 import Skeleton from '@/components/ui/skeleton'
+import { useBanners } from '@/hooks/useBanners'
 
 
 
@@ -20,91 +21,90 @@ interface Banner {
 }
 
 export default function SlideShow() {
-  const { data, loading, error } = useFetch('/banners')
+  const { data, isLoading } = useBanners();
   const { theme } = useTheme()
   const isDark = theme === 'dark'
-  // if (loading) return null
   if (!data || data.length === 0) return null
 
   return (
     <View className='px-3 '>
-      {loading ? (
+      {isLoading ? (
         <Skeleton width={"100%"} height={200} />
-      ):(
-         <View style={{ height: 200 }}>
-        <Swiper
-          autoplay
-          loop
-          autoplayTimeout={5}
-          showsPagination={true}
-          dotStyle={{
-            backgroundColor: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.2)',
-            width: 8,
-            height: 8,
-            borderRadius: 4,
-            marginHorizontal: 4,
-          }}
-          activeDotStyle={{
-            backgroundColor: colors.light.tint,
-            width: 24,
-            height: 8,
-            borderRadius: 4,
-            marginHorizontal: 4,
-          }}
-          paginationStyle={{
-            bottom: -22,
-          }}
-        >
-          {data?.map((banner: Banner) => (
-            <View key={banner.id} className='px-1'>
-              <View
-                style={[
-                  styles.bannerContainer,
-                  {
-                    shadowColor: isDark ? '#000' : '#000',
-                    shadowOpacity: isDark ? 0.5 : 0.15,
-                  }
-                ]}
-              >
-                <Image
-                  source={{ uri: banner.image }}
-                  className='w-full h-full rounded-2xl'
-                  resizeMode='cover'
-                />
-
-                {/* Gradient overlay for better text readability */}
-                <LinearGradient
-                  colors={[
-                    'transparent',
-                    'rgba(0,0,0,0.3)',
-                    'rgba(0,0,0,0.7)',
+      ) : (
+        <View style={{ height: 200 }}>
+          <Swiper
+            autoplay
+            loop
+            autoplayTimeout={5}
+            showsPagination={true}
+            dotStyle={{
+              backgroundColor: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.2)',
+              width: 8,
+              height: 8,
+              borderRadius: 4,
+              marginHorizontal: 4,
+            }}
+            activeDotStyle={{
+              backgroundColor: colors.light.tint,
+              width: 24,
+              height: 8,
+              borderRadius: 4,
+              marginHorizontal: 4,
+            }}
+            paginationStyle={{
+              bottom: -22,
+            }}
+          >
+            {data?.map((banner: Banner) => (
+              <View key={banner.id} className='px-1'>
+                <View
+                  style={[
+                    styles.bannerContainer,
+                    {
+                      shadowColor: isDark ? '#000' : '#000',
+                      shadowOpacity: isDark ? 0.5 : 0.15,
+                    }
                   ]}
-                  style={styles.gradientOverlay}
-                  className='rounded-2xl'
-                />
+                >
+                  <Image
+                    source={{ uri: banner.image }}
+                    className='w-full h-full rounded-2xl'
+                    resizeMode='cover'
+                  />
 
-                {/* Content container */}
-                <View className='absolute bottom-0 left-0 right-0 p-5'>
-                  <Text
-                    className='text-white font-bold text-3xl mb-2'
-                    style={styles.title}
-                    numberOfLines={2}
-                  >
-                    {banner.title}
-                  </Text>
-                  <Text
-                    className='text-white text-base opacity-90'
-                    style={styles.content}
-                    numberOfLines={2}
-                  >
-                    {banner.content}
-                  </Text>
+                  {/* Gradient overlay for better text readability */}
+                  <LinearGradient
+                    colors={[
+                      'transparent',
+                      'rgba(0,0,0,0.3)',
+                      'rgba(0,0,0,0.7)',
+                    ]}
+                    style={styles.gradientOverlay}
+                    className='rounded-2xl'
+                  />
+
+                  {/* Content container */}
+                  <View className='absolute bottom-0 left-0 right-0 p-5'>
+                    <Text
+                      className='text-white font-bold text-3xl mb-2'
+                      style={styles.title}
+                      numberOfLines={2}
+                    >
+                      {banner.title}
+                    </Text>
+                    <Text
+                      className='text-white text-base opacity-90'
+                      style={styles.content}
+                      numberOfLines={2}
+                    >
+                      {banner.content}
+                    </Text>
+                  </View>
                 </View>
               </View>
-            </View>
-          ))}
-        </Swiper>
-      </View>
+            ))}
+          </Swiper>
+        </View>
       )}
     </View>
   )

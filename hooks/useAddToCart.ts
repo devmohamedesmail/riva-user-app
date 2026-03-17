@@ -68,24 +68,24 @@ export const useAddToCart = () => {
             return;
         }
 
-        if (cartStore && cartStore.id !== store.id) {
-            Alert.alert(
-                t("cart.differentStoreTitle"),
-                t("cart.differentStoreMessage"),
-                [
-                    { text: t("cart.cancel"), style: "cancel" },
-                    {
-                        text: t("cart.clearAndContinue"),
-                        style: "destructive",
-                        onPress: () => {
-                            dispatch(clearCart());
-                            addProduct();
-                        },
-                    },
-                ]
-            );
-            return;
-        }
+        // if (cartStore && cartStore.id !== store.id) {
+        //     Alert.alert(
+        //         t("cart.differentStoreTitle"),
+        //         t("cart.differentStoreMessage"),
+        //         [
+        //             { text: t("cart.cancel"), style: "cancel" },
+        //             {
+        //                 text: t("cart.clearAndContinue"),
+        //                 style: "destructive",
+        //                 onPress: () => {
+        //                     dispatch(clearCart());
+        //                     addProduct();
+        //                 },
+        //             },
+        //         ]
+        //     );
+        //     return;
+        // }
 
         addProduct();
     };

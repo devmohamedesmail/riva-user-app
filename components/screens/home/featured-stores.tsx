@@ -81,7 +81,7 @@ export default function FeaturedStores() {
     }
 
     return (
-        <View className="py-6">
+        <View className="py-2">
             {/* Header */}
             <View className="flex-row items-center justify-between px-4 mb-4">
                 <View className="flex-row items-center">

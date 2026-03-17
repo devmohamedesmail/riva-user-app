@@ -25,9 +25,9 @@ const BottomPaper = forwardRef<BottomSheet, BottomPaperProps>(
         backgroundStyle={{ backgroundColor: colorScheme==="dark"?"black":"white" }}
         handleIndicatorStyle={{backgroundColor: colorScheme==="dark"?"white":"black"}}
       >
-        <BottomSheetView style={{ flex: 1 }} >
+        
           {children}
-        </BottomSheetView>
+       
       </BottomSheet>
     );
   }

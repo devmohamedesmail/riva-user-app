@@ -7,11 +7,16 @@ import { ReduxProvider } from '@/store/ReduxProvider'
 import React from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import Toast from 'react-native-toast-message';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+
+export const queryClient = new QueryClient();
 export default function AppProviders({ children }: { children: React.ReactNode }) {
+    
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
-            <ThemeProvider>
+            <QueryClientProvider client={queryClient}>
+                <ThemeProvider>
                 <AuthProvider>
                     <PlaceProvider>
                         <SettingProvider>
@@ -25,6 +30,8 @@ export default function AppProviders({ children }: { children: React.ReactNode }
                     </PlaceProvider>
                 </AuthProvider>
             </ThemeProvider>
+            </QueryClientProvider>
+            
         </GestureHandlerRootView>
 
     )
