@@ -1,21 +1,21 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity ,TextInput} from 'react-native'
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 import Search from '@/components/ui/search';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import {  useAppSelector } from '@/store/hooks';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import HeaderIcon from '@/components/ui/header-icon';
+
+import ProductsHeaderIcon from './products-header-icon';
 export default function ProductsHeader({ parsedStoreItem, searchQuery, setSearchQuery }: any) {
     const router = useRouter();
     const { i18n } = useTranslation();
     const cartItems = useAppSelector((state) => state.cart.items);
     return (
-        <LinearGradient
-            colors={["#fd4a12", "#FF6A3D"]}
-            className="px-4 pt-14 pb-6"
+        <View
+            className="px-4 pt-14 pb-6 bg-primary dark:bg-background-dark"
         >
             <View className="flex-row items-center justify-between mb-4">
                 <TouchableOpacity
@@ -29,46 +29,52 @@ export default function ProductsHeader({ parsedStoreItem, searchQuery, setSearch
                     {parsedStoreItem.name}
                 </Text>
 
-                <TouchableOpacity
+               
+                <ProductsHeaderIcon
                     onPress={() => router.push({
                         pathname: '/stores/reviews',
                         params: { storeItem: JSON.stringify(parsedStoreItem) }
                     })}
-                    className="w-10 h-10 rounded-full bg-white/20 items-center justify-center mx-2"
-                >
-                    <AntDesign name="comment" size={22} color="white" />
-                    {parsedStoreItem.total_reviews && (
-                        <View className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full items-center justify-center">
-                            <Text className="text-white text-xs font-bold">
-                                {parsedStoreItem.total_reviews}
-                            </Text>
-                        </View>
-                    )}
-                </TouchableOpacity>
+                    icon={<AntDesign name="comment" size={22} color="white" />}
+                    count={parsedStoreItem.total_reviews} 
+                />
 
-                <TouchableOpacity
+                <ProductsHeaderIcon
                     onPress={() => router.push("/cart")}
-                    className="w-10 h-10 rounded-full bg-white/20 items-center justify-center"
-                >
-                    <Ionicons name="cart-outline" size={22} color="white" />
-                    {cartItems.length > 0 && (
-                        <View className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full items-center justify-center">
-                            <Text className="text-white text-xs font-bold">
-                                {cartItems.length}
-                            </Text>
-                        </View>
-                    )}
-                </TouchableOpacity>
+                    icon={<Ionicons name="cart-outline" size={22} color="white" />}
+                    count={cartItems.length}
+                />
+
+               
             </View>
 
-            <Search
+            {/* <Search
                 placeholder={
                     i18n.language === "ar" ? "ابحث عن منتج..." : "Search products..."
                 }
                 value={searchQuery}
                 onChangeText={setSearchQuery}
-                // onPress={() => setSearchQuery("")}
-            />
-        </LinearGradient>
+            
+            /> */}
+
+            <View className="bg-white rounded-full flex-row items-center px-4 py-1">
+                            <Ionicons name="search" size={20} color="#9ca3af" />
+                            <TextInput
+                                placeholder={
+                    i18n.language === "ar" ? "ابحث عن منتج..." : "Search products..."
+                }
+                                value={searchQuery}
+                                onChangeText={setSearchQuery}
+                                className="flex-1 ml-2 text-base text-gray-800"
+                                cursorColor="#fd4a12"
+                                placeholderTextColor="#9ca3af"
+                            />
+                            {searchQuery.length > 0 && (
+                                <TouchableOpacity onPress={() => setSearchQuery("")}>
+                                    <Ionicons name="close-circle" size={20} color="#9ca3af" />
+                                </TouchableOpacity>
+                            )}
+                        </View>
+        </View>
     )
 }

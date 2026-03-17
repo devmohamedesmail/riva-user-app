@@ -10,6 +10,7 @@ import Loading from '@/components/ui/loading'
 import { FlatList, Text, View } from 'react-native'
 import ProductCard from '@/components/screens/products/product-card'
 import NoProducts from '@/components/screens/products/no-products'
+import { useStoreProducts } from '@/hooks/useStoreProducts'
 
 interface Product {
   id: number;
@@ -28,35 +29,8 @@ export default function Products() {
   const { t } = useTranslation();
   const { storeItem } = useLocalSearchParams();
   const parsedStoreItem = JSON.parse(storeItem as string);
-  const { data: products, loading: productsLoading } = useFetch(
-    `/stores/${parsedStoreItem.id}/products`
-  );
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
-
-  // Filter products
-  const filteredProducts = useMemo(() => {
-    if (!products) return [];
-    let filtered = products;
-
-    if (searchQuery.trim()) {
-      filtered = filtered.filter(
-        (product: Product) =>
-          product?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          product?.description
-            ?.toLowerCase()
-            .includes(searchQuery.toLowerCase())
-      );
-    }
-
-    if (selectedCategory !== null) {
-      filtered = filtered.filter(
-        (product: Product) => product.category_id === selectedCategory
-      );
-    }
-
-    return filtered;
-  }, [products, searchQuery, selectedCategory]);
+  const {filteredProducts,isLoading , searchQuery,setSearchQuery , selectedCategory,setSelectedCategory}=useStoreProducts(parsedStoreItem.id)
+  
 
   return (
     <Layout>
@@ -72,7 +46,7 @@ export default function Products() {
         selectedCategory={selectedCategory}
         t={t}
       />
-{productsLoading ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <View style={{ flex: 1, paddingHorizontal: 8 }}>
@@ -91,7 +65,7 @@ export default function Products() {
         </View>
       )}
 
-     
+
     </Layout>
   )
 }
