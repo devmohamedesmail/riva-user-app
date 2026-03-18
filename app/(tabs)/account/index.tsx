@@ -189,6 +189,13 @@ export default function AccountScreen() {
             onPress={() => router.push("/support")}
 
           />
+          <OptionButton
+            title={t("account.address")}
+            icon={<MaterialIcons name="location-on" size={24} color={colors.light.tint} />}
+            type="navigation"
+            onPress={() => router.push("/account/address")}
+
+          />
         </View>
 
         {user ? <LogoutSection /> : null}

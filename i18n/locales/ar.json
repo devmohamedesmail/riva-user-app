@@ -272,7 +272,8 @@
     "delete_account_success": "تم حذف الحساب بنجاح",
     "delete_account_failed": "فشل حذف الحساب",
     "password_mismatch": "كلمة المرور غير متطابقة",
-    "password_incorrect": "كلمة المرور غير صحيحة"
+    "password_incorrect": "كلمة المرور غير صحيحة",
+    "address": "العنوان"
   },
   "navigation": {
     "home": "الرئيسية",
@@ -578,5 +579,29 @@
     "title": "لا يوجد اتصال بالإنترنت",
     "message": "يرجى التحقق من اتصال الواي فاي أو بيانات الهاتف",
     "retry": "Retry"
+  },
+  "address": {
+    "title": "عناويني",
+    "addAddress": "إضافة عنوان",
+    "editAddress": "تعديل العنوان",
+    "deleteAddress": "حذف العنوان",
+    "noAddresses": "لا توجد عناوين",
+    "noAddressesDescription": "أضف عنوانًا للبدء بالطلب",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "deleteConfirmTitle": "حذف العنوان",
+    "deleteConfirmMessage": "هل أنت متأكد أنك تريد حذف هذا العنوان؟",
+    "adding": "جاري الإضافة...",
+    "updating": "جاري التحديث...",
+    "deleting": "جاري الحذف...",
+    "successAdd": "تم إضافة العنوان بنجاح",
+    "successUpdate": "تم تحديث العنوان بنجاح",
+    "successDelete": "تم حذف العنوان بنجاح",
+    "error": "حدث خطأ ما",
+    "street": "عنوان الشارع",
+    "phone": "رقم الهاتف",
+    "enterStreet": "أدخل عنوان الشارع",
+    "enterPhone": "أدخل رقم الهاتف",
+    "validationError": "يرجى ملء جميع الحقول المطلوبة"
   }
 }

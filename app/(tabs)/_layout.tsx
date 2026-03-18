@@ -115,6 +115,10 @@ export default function Layout() {
                 name="account/edit-profile"
                 options={{ href: null }}
             />
+            <Tabs.Screen
+                name="account/address"
+                options={{ href: null }}
+            />
 
         </Tabs>
     )

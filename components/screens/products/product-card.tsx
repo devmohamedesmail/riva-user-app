@@ -238,7 +238,7 @@ export default function ProductCard({ item, store }: { item: Product; store: any
             onQuantityChange={setModalQuantity}
           /> */}
 
- <View className="flex-row items-center justify-center mb-4 bg-gray-100 rounded-full p-2">
+          <View className="flex-row items-center justify-center mb-4 bg-gray-100 rounded-full p-2">
             <TouchableOpacity
               onPress={() => setModalQuantity(Math.max(1, modalQuantity - 1))}
               className="bg-white w-10 h-10 rounded-full items-center justify-center"
