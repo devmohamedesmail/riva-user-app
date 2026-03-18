@@ -547,7 +547,8 @@
     "reviewMustBeAtLeast": "يجب أن تكون المراجعة على الأقل 10 أحرف",
     "reviewMustBeLessThan": "يجب أن تكون المراجعة أقل من 500 حرف",
     "ratingIsRequired": "التقييم مطلوب",
-    "reviewIsRequired": "تعليق المراجعة مطلوب"
+    "reviewIsRequired": "تعليق المراجعة مطلوب",
+    "reviewAddedSuccessfully": "تم إضافة التقييم بنجاح!"
   },
   "checkout": {
     "title": "الدفع",

@@ -547,7 +547,9 @@
     "reviewMustBeAtLeast": "Review must be at least 10 characters",
     "reviewMustBeLessThan": "Review must be less than 500 characters",
     "ratingIsRequired": "Rating is required",
-    "reviewIsRequired": "Review comment is required"
+    "reviewIsRequired": "Review comment is required",
+    "reviewAddedSuccessfully": "Review added successfully!"
+
   },
   "checkout": {
     "title": "Checkout",

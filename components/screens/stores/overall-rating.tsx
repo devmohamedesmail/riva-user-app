@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import { useTranslation } from 'react-i18next'
 
-export default function OverallRating({storeItem}:any) {
+export default function OverallRating({id, name, logo, total_reviews}:any) {
     const { t } = useTranslation();
   return (
      <View className="mx-5 mb-6 bg-gradient-to-br rounded-3xl overflow-hidden shadow-lg">
@@ -15,12 +15,12 @@ export default function OverallRating({storeItem}:any) {
             className="p-6"
           >
             <View className="items-center">
-              <Text className="text-6xl font-bold text-white mb-2">{storeItem.total_reviews}</Text>
+              <Text className="text-6xl font-bold text-white mb-2">{total_reviews || 0}</Text>
               <View className="flex-row mb-2">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <Ionicons
                     key={star}
-                    name={star <= parseFloat(storeItem.avg_rating) ? 'star' : 'star-outline'}
+                    name={star <= parseFloat(total_reviews || '0') ? 'star' : 'star-outline'}
                     size={24}
                     color="#FFF"
                     style={{ marginHorizontal: 2 }}
@@ -28,7 +28,7 @@ export default function OverallRating({storeItem}:any) {
                 ))}
               </View>
               <Text className="text-white text-base opacity-90">
-                {t('reviews.basedOnReviews', { count: storeItem.total_reviews })}
+                {t('reviews.basedOnReviews', { count: total_reviews || 0 })}
               </Text>
             </View>
           </LinearGradient>

@@ -1,12 +1,10 @@
-import React from 'react'
-import { View, Text, TouchableOpacity ,TextInput} from 'react-native'
-import { LinearGradient } from "expo-linear-gradient";
+import { useAppSelector } from '@/store/hooks';
 import { Ionicons } from "@expo/vector-icons";
-import { useTranslation } from "react-i18next";
-import { useRouter } from "expo-router";
-import Search from '@/components/ui/search';
-import {  useAppSelector } from '@/store/hooks';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { useRouter } from "expo-router";
+import React from 'react';
+import { useTranslation } from "react-i18next";
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import ProductsHeaderIcon from './products-header-icon';
 export default function ProductsHeader({ parsedStoreItem, searchQuery, setSearchQuery }: any) {
@@ -29,14 +27,20 @@ export default function ProductsHeader({ parsedStoreItem, searchQuery, setSearch
                     {parsedStoreItem.name}
                 </Text>
 
-               
+
                 <ProductsHeaderIcon
                     onPress={() => router.push({
                         pathname: '/stores/reviews',
-                        params: { storeItem: JSON.stringify(parsedStoreItem) }
+                        // params: { storeItem: JSON.stringify(parsedStoreItem) }
+                        params: {
+                            id: parsedStoreItem.id,
+                            name: parsedStoreItem.name,
+                            logo: parsedStoreItem.logo,
+                            total_reviews: parsedStoreItem.total_reviews
+                        }
                     })}
                     icon={<AntDesign name="comment" size={22} color="white" />}
-                    count={parsedStoreItem.total_reviews} 
+                    count={parsedStoreItem.total_reviews}
                 />
 
                 <ProductsHeaderIcon
@@ -45,7 +49,7 @@ export default function ProductsHeader({ parsedStoreItem, searchQuery, setSearch
                     count={cartItems.length}
                 />
 
-               
+
             </View>
 
             {/* <Search
@@ -58,23 +62,23 @@ export default function ProductsHeader({ parsedStoreItem, searchQuery, setSearch
             /> */}
 
             <View className="bg-white rounded-full flex-row items-center px-4 py-1">
-                            <Ionicons name="search" size={20} color="#9ca3af" />
-                            <TextInput
-                                placeholder={
-                    i18n.language === "ar" ? "ابحث عن منتج..." : "Search products..."
-                }
-                                value={searchQuery}
-                                onChangeText={setSearchQuery}
-                                className="flex-1 ml-2 text-base text-gray-800"
-                                cursorColor="#fd4a12"
-                                placeholderTextColor="#9ca3af"
-                            />
-                            {searchQuery.length > 0 && (
-                                <TouchableOpacity onPress={() => setSearchQuery("")}>
-                                    <Ionicons name="close-circle" size={20} color="#9ca3af" />
-                                </TouchableOpacity>
-                            )}
-                        </View>
+                <Ionicons name="search" size={20} color="#9ca3af" />
+                <TextInput
+                    placeholder={
+                        i18n.language === "ar" ? "ابحث عن منتج..." : "Search products..."
+                    }
+                    value={searchQuery}
+                    onChangeText={setSearchQuery}
+                    className="flex-1 ml-2 text-base text-gray-800"
+                    cursorColor="#fd4a12"
+                    placeholderTextColor="#9ca3af"
+                />
+                {searchQuery.length > 0 && (
+                    <TouchableOpacity onPress={() => setSearchQuery("")}>
+                        <Ionicons name="close-circle" size={20} color="#9ca3af" />
+                    </TouchableOpacity>
+                )}
+            </View>
         </View>
     )
 }

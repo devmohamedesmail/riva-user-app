@@ -1,0 +1,79 @@
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Text, View, TextInput } from 'react-native'
+
+interface TextAreaProps {
+    label?: string
+    placeholder?: string
+    value: string
+    onChangeText: (text: string) => void
+    error?: string
+    touched?: boolean
+    maxLength?: number
+    numberOfLines?: number
+    height?: number
+    editable?: boolean
+}
+
+export default function TextArea({
+    label,
+    placeholder,
+    value,
+    onChangeText,
+    error,
+    touched,
+    maxLength = 200,
+    numberOfLines = 4,
+    height = 100,
+    editable = true
+}: TextAreaProps) {
+    const { t, i18n } = useTranslation()
+    const [isFocused, setIsFocused] = useState(false)
+
+    return (
+        <View className="mb-4">
+            {label && (
+                <Text className={`text-black text-base font-medium mb-2 ${i18n.language === 'ar' ? 'text-right' : 'text-left'}`}> {label} </Text>
+            )}
+
+            <TextInput
+                value={value}
+                onChangeText={onChangeText}
+                placeholder={placeholder}
+                placeholderTextColor="#9CA3AF"
+                multiline={true}
+                numberOfLines={numberOfLines}
+                maxLength={maxLength}
+                editable={editable}
+                textAlignVertical="top"
+                cursorColor={"#fd4a12"}
+                className={`border border-black text-right rounded-lg px-4 py-3 ${isFocused ? 'bg-gray-100 border-primary' : ''} text-black dark:text-white ${touched && error ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                style={{
+                    height: height,
+                    fontSize: 16
+                }}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+            />
+
+            {/* Character count */}
+            <View className="flex-row justify-between items-center mt-1">
+                <View>
+                    {touched && error && (
+                        <Text
+                            className="text-red-500 text-sm"
+                        >
+                            {error}
+                        </Text>
+                    )}
+                </View>
+
+                <Text
+                    className="text-black dark:text-white text-sm">
+                    {value.length}/{maxLength}
+                </Text>
+            </View>
+        </View>
+    )
+}
