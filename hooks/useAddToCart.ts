@@ -1,7 +1,7 @@
 import { Alert } from "react-native";
 import Toast from "react-native-toast-message";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { addToCart, clearCart } from "@/store/slices/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addToCart, clearCart } from "@/redux/slices/cartSlice";
 import { useTranslation } from "react-i18next";
 
 interface AddToCartAttribute {

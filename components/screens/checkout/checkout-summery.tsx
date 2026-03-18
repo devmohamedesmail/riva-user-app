@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { config } from '@/constants/config';
-import { useAppSelector } from '@/store/hooks';
+import { useAppSelector } from '@/redux/hooks';
 
 export default function CheckoutSummery({selectedArea}: {selectedArea: any}) {
     const totalPrice = useAppSelector((state) => state.cart.totalPrice);

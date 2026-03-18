@@ -3,7 +3,7 @@ import Layout from '@/components/ui/layout'
 import React, { useState, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ScrollView, View, Text, TouchableOpacity, TextInput } from 'react-native';
-import { selectCartItems, selectCartTotalPrice, useAppSelector } from '@/store/hooks';
+import { selectCartItems, selectCartTotalPrice, useAppSelector } from '@/redux/hooks';
 import useFetch from '@/hooks/useFetch';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';

@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
-import { useAppSelector } from "@/store/store";
-import { selectCartTotalPrice } from "@/store/hooks";
+import { useAppSelector } from "@/redux/store";
+import { selectCartTotalPrice } from "@/redux/hooks";
 import { config } from "@/constants/config";
 
 

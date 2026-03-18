@@ -3,7 +3,7 @@ import { NetworkProvider } from '@/context/network-provider'
 import PlaceProvider from '@/context/place-provider'
 import SettingProvider from '@/context/setting-provider'
 import { ThemeProvider } from '@/context/theme-provider'
-import { ReduxProvider } from '@/store/ReduxProvider'
+import { ReduxProvider } from '@/redux/ReduxProvider'
 import React from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import Toast from 'react-native-toast-message';

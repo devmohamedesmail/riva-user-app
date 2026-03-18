@@ -1,7 +1,7 @@
 import { Tabs } from 'expo-router'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
-import { useAppSelector, selectCartTotalItems } from "@/store/hooks";
+import { useAppSelector, selectCartTotalItems } from "@/redux/hooks";
 import colors from '@/constants/colors';
 import { useColorScheme } from 'nativewind';
 import { useTranslation } from 'react-i18next';

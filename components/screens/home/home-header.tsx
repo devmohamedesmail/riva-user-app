@@ -2,7 +2,7 @@ import HeaderIcon from '@/components/ui/header-icon'
 import React from 'react'
 import { View } from 'react-native'
 import EvilIcons from '@expo/vector-icons/EvilIcons';
-import { useAppSelector, selectCartTotalItems } from "@/store/hooks";
+import { useAppSelector, selectCartTotalItems } from "@/redux/hooks";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from "expo-router";
 import PlaceIcon from './place-icon';

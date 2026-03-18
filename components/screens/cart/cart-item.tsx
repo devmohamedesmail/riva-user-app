@@ -1,11 +1,11 @@
 import { config } from "@/constants/config";
-import { deleteFromCart, updateQuantity } from "@/store/slices/cartSlice";
+import { deleteFromCart, updateQuantity } from "@/redux/slices/cartSlice";
 import React, { useState } from "react";
 import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Ionicons } from "@expo/vector-icons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import { selectCartItems, useAppDispatch, useAppSelector } from "@/store/hooks";
+import { selectCartItems, useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useColorScheme } from "nativewind";
 import ItemDeleteModal from "./item-delete-modal";
 
@@ -16,7 +16,7 @@ export default function CartItem({ item }: any) {
     const { t } = useTranslation();
     const [isModalVisible, setModalVisible] = useState(false);
     const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
-    const { colorScheme } = useColorScheme()
+    
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
@@ -82,6 +82,7 @@ export default function CartItem({ item }: any) {
                     >
                         {item.name}
                     </Text>
+                    <Text>{item.store_name}</Text>
 
                     <Text
                         className="font-bold text-center text-base mb-3 text-black dark:text-white"
