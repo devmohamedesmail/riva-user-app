@@ -8,9 +8,8 @@ import { Image, Pressable, Text, TouchableOpacity, View } from 'react-native'
 import Toast from 'react-native-toast-message'
 import { useColorScheme } from 'nativewind'
 import { Alert } from 'react-native'
-import { addToCart, clearCart } from '@/redux/store'
+import { useAddToCart } from '@/hooks/useAddToCart'
 import AddCartModal from '@/components/ui/add-cart-modal'
-
 interface Attribute {
     id: number;
     name: string;
@@ -107,12 +106,7 @@ export default function ResultCardItem({ item }: { item: Product }) {
         }
     };
 
-    const getCartQuantity = (productId: number) => {
-        const filteredItems = cartItems.filter(
-            (cartItem) => cartItem.id === productId.toString()
-        );
-        return filteredItems.reduce((sum, item) => sum + item.quantity, 0);
-    };
+    const { handleAddToCart, getCartQuantity } = useAddToCart();
 
     const calculateDiscount = () => {
         if (item.on_sale && item.sale_price && item.price > 0) {
@@ -121,105 +115,6 @@ export default function ResultCardItem({ item }: { item: Product }) {
         }
         return 0;
     };
-
-    const handleAddToCart = (
-        product: OfferProduct,
-        quantity: number = 1,
-        attribute?: { name: string; value: string; price: number }
-    ) => {
-        const basePrice =
-            product.on_sale && product.sale_price
-                ? product.sale_price
-                : product.price;
-
-        const finalPrice = attribute ? basePrice + attribute.price : basePrice;
-
-        const store = product.store;
-
-        if (cartItems.length === 0) {
-            for (let i = 0; i < quantity; i++) {
-                dispatch(
-                    addToCart({
-                        product: {
-                            id: product.id.toString(),
-                            name: product.name,
-                            description: product.description || "",
-                            price: finalPrice,
-                            image: product.image,
-                            store_id: store.id,
-                            store_name: store.name,
-                            selectedAttribute: attribute,
-                        },
-                        store: store,
-                    })
-                );
-            }
-            Toast.show({
-                type: "success", text1: t("cart.addedToCart")
-            });
-            toggleModal();
-            return;
-        }
-
-        if (cartStore && cartStore.id !== store.id) {
-            Alert.alert(
-                t("cart.differentStoreTitle"),
-                t("cart.differentStoreMessage"),
-                [
-                    { text: t("cart.cancel"), style: "cancel" },
-                    {
-                        text: t("cart.clearAndContinue"),
-                        style: "destructive",
-                        onPress: () => {
-                            dispatch(clearCart());
-                            for (let i = 0; i < quantity; i++) {
-                                dispatch(
-                                    addToCart({
-                                        product: {
-                                            id: product.id.toString(),
-                                            name: product.name,
-                                            description: product.description || "",
-                                            price: finalPrice,
-                                            image: product.image,
-                                            store_id: store.id,
-                                            store_name: store.name,
-                                            selectedAttribute: attribute,
-                                        },
-                                        store,
-                                    })
-                                );
-                            }
-                            Toast.show({ type: "success", text1: t("cart.addedToCart") });
-                            toggleModal();
-                        },
-                    },
-                ]
-            );
-            return;
-        }
-
-        for (let i = 0; i < quantity; i++) {
-            dispatch(
-                addToCart({
-                    product: {
-                        id: product.id.toString(),
-                        name: product.name,
-                        description: product.description || "",
-                        price: finalPrice,
-                        image: product.image,
-                        store_id: store.id,
-                        store_name: store.name,
-                        selectedAttribute: attribute,
-                    },
-                    store,
-                })
-            );
-        }
-
-        Toast.show({ type: "success", text1: t("cart.addedToCart") });
-        toggleModal();
-    };
-
     const handleAddButtonPress = () => {
         setModalVisible(true);
     };

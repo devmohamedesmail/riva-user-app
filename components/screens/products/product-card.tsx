@@ -195,96 +195,16 @@ export default function ProductCard({ item, store }: { item: Product; store: any
 
 
 
-      <Modal
-        animationIn="zoomIn"
-        animationOut="zoomOut"
-        isVisible={isModalVisible}
-        onBackdropPress={toggleModal}
-      >
-        <View className="bg-white py-5 px-4 rounded-lg max-h-96">
-          <AddCartModalHeader
-            toggleModal={toggleModal}
-          />
-
-          {/* قائمة الصفات */}
-          <ScrollView className="mb-4">
-            {item.attributes?.map((attribute, attrIndex) => (
-              <View key={attrIndex} className="mb-4">
-                <Text className="text-lg font-semibold mb-2">
-                  {attribute.name}
-                </Text>
-                {attribute.values.map((attrValue, valueIndex) => {
-                  const isSelected =
-                    selectedAttribute?.value === attrValue.value;
-                  return (
-                    <ModalSelectOption
-                      key={valueIndex}
-                      attrValue={attrValue}
-                      attribute={attribute}
-                      valueIndex={valueIndex}
-                      setSelectedAttribute={setSelectedAttribute}
-                      isSelected={isSelected}
-                    />
-                  );
-                })}
-              </View>
-            ))}
-          </ScrollView>
-
-
-
-          {/* <QuantityControlSection
-            modalQuantity={modalQuantity}
-            onQuantityChange={setModalQuantity}
-          /> */}
-
-          <View className="flex-row items-center justify-center mb-4 bg-gray-100 rounded-full p-2">
-            <TouchableOpacity
-              onPress={() => setModalQuantity(Math.max(1, modalQuantity - 1))}
-              className="bg-white w-10 h-10 rounded-full items-center justify-center"
-            >
-              <Text className="text-primary text-2xl font-bold">-</Text>
-            </TouchableOpacity>
-            <Text className="text-xl font-bold mx-6">{modalQuantity}</Text>
-            <TouchableOpacity
-              onPress={() => setModalQuantity(modalQuantity + 1)}
-              className="bg-primary w-10 h-10 rounded-full items-center justify-center"
-            >
-              <Text className="text-white text-2xl font-bold">+</Text>
-            </TouchableOpacity>
-          </View>
-          {/* Action Button */}
-
-          <TouchableOpacity
-            onPress={() => {
-              handleAddToCart(
-                {
-                  ...item,
-                  store,
-                },
-                modalQuantity,
-                selectedAttribute || undefined
-              );
-
-              toggleModal();
-            }}
-            className={`py-3 rounded-full ${item.attributes && item.attributes.length > 0 && !selectedAttribute
-              ? "bg-gray-300"
-              : "bg-primary"
-              }`}
-            disabled={
-              item.attributes &&
-              item.attributes.length > 0 &&
-              !selectedAttribute
-            }
-          >
-            <Text className="text-white text-center font-bold">
-              {t("cart.confirmAdd")}
-            </Text>
-          </TouchableOpacity>
-
-        </View>
-      </Modal>
+      <AddCartModal
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+        item={{ ...item, store }}
+        setSelectedAttribute={setSelectedAttribute}
+        selectedAttribute={selectedAttribute}
+        setModalQuantity={setModalQuantity}
+        modalQuantity={modalQuantity}
+        handleAddToCart={handleAddToCart}
+      />
     </View>
   );
 }

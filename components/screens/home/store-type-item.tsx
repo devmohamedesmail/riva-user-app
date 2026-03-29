@@ -30,7 +30,7 @@ export default function StoreTypeItem({ storeType }: any) {
   };
 
   return (
-    <Animated.View style={{ transform: [{ scale }] }} className="w-[30%] mb-4 mx-1">
+    <Animated.View style={{ transform: [{ scale }] }} className="w-[30%] mb-4 ">
       <Pressable
         onPress={() => {
           router.push({

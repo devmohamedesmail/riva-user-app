@@ -64,9 +64,7 @@ const cartSlice = createSlice({
       }
 
       // different store → don't allow
-      if (state.store.id !== store.id) {
-        return; // سنعالج التحذير من الـ UI
-      }
+      // Removed per user request to accept products from any stores
 
       // same store → add item
       // Create unique key based on product id and selected attribute

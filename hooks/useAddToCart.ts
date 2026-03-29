@@ -29,12 +29,13 @@ export const useAddToCart = () => {
         quantity: number = 1,
         attribute?: AddToCartAttribute
     ) => {
-        const basePrice =
+        const basePrice = Number(
             product.on_sale && product.sale_price
                 ? product.sale_price
-                : product.price;
+                : product.price
+        );
 
-        const finalPrice = attribute ? basePrice + attribute.price : basePrice;
+        const finalPrice = attribute ? basePrice + Number(attribute.price) : basePrice;
 
         const store = product.store;
 
@@ -48,8 +49,8 @@ export const useAddToCart = () => {
                             description: product.description || "",
                             price: finalPrice,
                             image: product.image,
-                            store_id: store.id,
-                            store_name: store.name,
+                            store_id: store?.id,
+                            store_name: store?.name,
                             selectedAttribute: attribute,
                         },
                         store,
@@ -62,30 +63,6 @@ export const useAddToCart = () => {
                 text1: t("cart.addedToCart"),
             });
         };
-
-        if (cartItems.length === 0) {
-            addProduct();
-            return;
-        }
-
-        // if (cartStore && cartStore.id !== store.id) {
-        //     Alert.alert(
-        //         t("cart.differentStoreTitle"),
-        //         t("cart.differentStoreMessage"),
-        //         [
-        //             { text: t("cart.cancel"), style: "cancel" },
-        //             {
-        //                 text: t("cart.clearAndContinue"),
-        //                 style: "destructive",
-        //                 onPress: () => {
-        //                     dispatch(clearCart());
-        //                     addProduct();
-        //                 },
-        //             },
-        //         ]
-        //     );
-        //     return;
-        // }
 
         addProduct();
     };

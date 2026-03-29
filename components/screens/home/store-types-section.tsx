@@ -44,7 +44,7 @@ export default function StoreTypesSection() {
             >
                 {t('home.store_types_title')}
             </Text>
-            <View className={`flex flex-row justify-start flex-wrap mb-4 mt-1 px-3 gap-2 ${i18n.language === 'ar' ? 'flex-row-reverse' : ''}`}>
+            <View className={`flex flex-row justify-between flex-wrap mb-4 mt-1 px-3 gap-1 ${i18n.language === 'ar' ? 'flex-row-reverse' : ''}`}>
                 {data && data.map((storeType:StoreType) => (
                     <StoreTypeItem key={storeType.id} storeType={storeType} />
                 ))}

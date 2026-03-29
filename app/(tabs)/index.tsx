@@ -12,6 +12,7 @@ import FeaturedStores from '@/components/screens/home/featured-stores';
 import { RefreshControl } from 'react-native-gesture-handler';
 import { queryClient } from '@/providers';
 import PlacesBottomPaper from '@/components/screens/home/places-bottom-paper';
+import SupportFloatBtn from '@/components/ui/support-float-btn';
 
 export default function Home() {
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -48,11 +49,11 @@ export default function Home() {
           <StoreTypesSection />
           <FeaturedStores />
         </ScrollView>
+        <SupportFloatBtn />
       </Layout>
 
 
       <PlacesBottomPaper
-
         bottomSheetRef={bottomSheetRef}
       />
     </>
