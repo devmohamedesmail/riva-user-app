@@ -1,7 +1,7 @@
 import Header from '@/components/ui/header'
 import Layout from '@/components/ui/layout'
 import React from 'react'
-import { ScrollView, View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity, TextInput, Pressable } from 'react-native';
 import BottomPaper from '@/components/ui/bottom-paper';
 import colors from '@/constants/colors';
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -39,7 +39,7 @@ export default function Checkout() {
 
 
 
-            <TouchableOpacity
+            <Pressable
               onPress={() => bottomSheetRef.current?.expand()}
               className="bg-primary rounded-xl p-4 my-4 flex-row items-center justify-between shadow-lg active:opacity-80"
             >
@@ -50,13 +50,28 @@ export default function Checkout() {
                 </Text>
               </View>
               <AntDesign name="down" size={16} color="white" />
-            </TouchableOpacity>
+            </Pressable>
 
             {formik.touched.area_id && formik.errors.area_id ? (
               <Text className="text-red-500 text-sm mt-1">
                 {formik.errors.area_id}
               </Text>
             ) : null}
+
+
+
+
+            <Input
+              label={t("order.customer_name")}
+              placeholder={t("order.enterCustomerName")}
+              value={formik.values.customer_name}
+              onChangeText={formik.handleChange("customer_name")}
+              error={
+                formik.touched.customer_name && formik.errors.customer_name
+                  ? formik.errors.customer_name
+                  : undefined
+              }
+            />
 
 
             <Input

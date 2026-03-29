@@ -19,25 +19,21 @@ export default function Cart() {
 
       {cartItems.length === 0 ? <EmptyCart /> : (<>
         <ScrollView
-          className="flex-1"
+          className="flex-1 bg-gray-50 dark:bg-background-dark"
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 100 }}
+          contentContainerStyle={{ paddingBottom: 20 }}
         >
-          <View className="px-4 py-4 flex flex-row flex-wrap gap-4">
+          <View className="px-4 pt-4 pb-8">
             {cart.items.map((item) => (
               <CartItem key={item.id} item={item} />
             ))}
           </View>
-
-          <CartSummary />
-
-
-          {/* Extra spacing for fixed bottom buttons */}
-          <View className="h-8" />
         </ScrollView>
-        <CartAction />
 
-
+        <View className="bg-white dark:bg-card-dark rounded-t-3xl overflow-hidden border-t border-gray-200 dark:border-gray-800 shadow-[0_-10px_15px_rgba(0,0,0,0.05)] pt-2 pb-[1px]">
+          <CartSummary />
+          <CartAction />
+        </View>
       </>)}
     </Layout>
   )

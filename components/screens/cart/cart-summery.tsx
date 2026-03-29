@@ -12,17 +12,17 @@ export default function CartSummary() {
 
 
   return (
-    <View
-      className="mx-4 rounded-2xl p-5 mb-4 bg-white dark:bg-card-dark"
-    >
+    <View className="px-6 pt-2 pb-4">
+      <View className="flex-row justify-between items-center mb-2">
       <Text
-        className="text-lg text-center mb-4 font-extrabold text-black dark:text-white"
+        className="text-lg font-extrabold text-black dark:text-white"
       >
         {t("cart.orderSummary")}
       </Text>
+      </View>
 
       <View
-        className="border-t pt-4 mt-2"
+        className="border-t border-gray-200 dark:border-gray-800 pt-4 mt-2"
         
       >
         <View

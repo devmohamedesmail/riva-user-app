@@ -35,6 +35,7 @@ export default function useCreateOrder() {
 
     const formik = useFormik({
         initialValues: {
+            customer_name:"",
             phone: "",
             address: "",
             area_id: "",
@@ -42,6 +43,7 @@ export default function useCreateOrder() {
         },
 
         validationSchema: Yup.object({
+            customer_name: Yup.string().required(t("order.customerNameRequired")),
             phone: Yup.string()
                 .required(t("order.phoneRequired"))
                 .min(6, t("order.phoneMin")),
@@ -101,7 +103,7 @@ export default function useCreateOrder() {
 
                         // total_price:  Number(selectedArea?.price || 0) + Number(storeTotal.toFixed(2)),
                         total_price: Number(storeTotal.toFixed(2)),
-
+                        customer_name:values.customer_name,
                         delivery_address: values.address,
                         phone: values.phone,
                         area_id: selectedArea?.id,

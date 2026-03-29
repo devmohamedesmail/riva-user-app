@@ -376,7 +376,10 @@
     "searchArea": "ابحث في المنطقة...",
     "address": "العنوان",
     "enterAddress": "أدخل عنوانك",
-    "areaRequired": "المنطقة مطلوبة"
+    "areaRequired": "المنطقة مطلوبة",
+    "customer_name":" الاسم ",
+    "enterCustomerName":" أدخل اسمك  ",
+    "customerNameRequired":"الاسم مطلوب"
   },
   "orders": {
     "myOrders": "طلباتي",

@@ -28,10 +28,8 @@ export default function CartAction() {
 
   return (
     <>
-      <View
-        className="absolute bottom-0 left-0 right-0"
-      >
-        <View className="flex-row ">
+      <View>
+        <View className="flex-row">
           {/* Clear Cart Button */}
           <TouchableOpacity
             onPress={toggleModal}

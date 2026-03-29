@@ -376,7 +376,10 @@
     "searchArea": "Search area...",
     "address":"Address",
     "enterAddress":"Enter your address",
-    "areaRequired":"Area is required"
+    "areaRequired":"Area is required",
+    "customer_name":"Customer Name",
+    "enterCustomerName":"Enter your Name",
+    "customerNameRequired":"Customer Name is required"
   },
   "orders": {
     "myOrders": "My Orders",

@@ -43,86 +43,75 @@ export default function CartItem({ item }: any) {
 
     return (
         <>
-            <View
-                className="w-[48%] rounded-2xl overflow-hidden bg-white dark:bg-card-dark">
-
+            <View className="w-full flex-row rounded-2xl overflow-hidden bg-white dark:bg-card-dark mb-4 shadow-sm border border-gray-100 dark:border-gray-800 p-2">
                 <View className="relative">
                     {item.image ? (
                         <Image
                             source={{ uri: item.image }}
-                            style={{ width: "100%", height: 150 }}
-                            className="rounded-t-2xl"
+                            style={{ width: 100, height: 100 }}
+                            className="rounded-xl"
                             resizeMode="cover"
                         />
                     ) : (
-                        <View
-                            className="h-36 flex items-center justify-center rounded-t-2xl">
-                            <Text >{item.store_name}</Text>
+                        <View className="w-[100px] h-[100px] flex items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800">
+                            <Text className="text-sm text-center px-1" numberOfLines={2}>{item.store_name}</Text>
                         </View>
                     )}
-
-                    {/* Delete Button */}
-                    <TouchableOpacity
-                        onPress={() => {
-                            setSelectedItemId(item.id);
-                            toggleModal();
-                        }}
-                        className="absolute bg-red-600 top-2 right-2 p-2 w-9 h-9 rounded-full flex items-center justify-center"
-                        activeOpacity={0.8}
-                    >
-                        <FontAwesome5 name="trash" size={14} color="white" />
-                    </TouchableOpacity>
                 </View>
 
                 {/* Item Content */}
-                <View className="px-3 py-4">
-                    <Text
-                        className="text-base text-center font-bold mb-2 text-black dark:text-white"
-                        numberOfLines={2}
-                    >
-                        {item.name}
-                    </Text>
-                    <Text>{item.store_name}</Text>
-
-                    <Text
-                        className="font-bold text-center text-base mb-3 text-black dark:text-white"
-
-                    >
-                        {item.selectedAttribute ? item.selectedAttribute.price : item.price}{" "}
-                        {config.CurrencySymbol}
-                    </Text>
+                <View className="flex-1 px-3 py-1 flex-col justify-between">
+                    <View className="flex-row justify-between items-start">
+                        <View className="flex-1 pr-2">
+                            <Text
+                                className="text-base font-bold text-black dark:text-white"
+                                numberOfLines={2}
+                            >
+                                {item.name}
+                            </Text>
+                            <Text className="text-xs text-gray-500 mt-1" numberOfLines={1}>{item.store_name}</Text>
+                        </View>
+                        {/* Delete Button */}
+                        <TouchableOpacity
+                            onPress={() => {
+                                setSelectedItemId(item.id);
+                                toggleModal();
+                            }}
+                            className="p-1"
+                            activeOpacity={0.8}
+                        >
+                            <FontAwesome5 name="trash" size={16} color="#dc2626" />
+                        </TouchableOpacity>
+                    </View>
 
                     {item.selectedAttribute && (
-                        <Text className="text-sm text-center bg-primary dark:bg-primary-dark rounded-md w-fit text-white mx-auto px-5 mb-3">{item.selectedAttribute.value}</Text>
+                        <Text className="text-xs mt-1 text-primary dark:text-primary-dark font-medium">{item.selectedAttribute.value}</Text>
                     )}
 
-                    {/* Quantity Controls */}
-                    <View className="flex flex-row items-center justify-center mt-2">
-                        <View
-                            className="flex-row justify-center items-center rounded-full p-1 px-2"
+                    <View className="flex-row items-end justify-between mt-2 flex-1">
+                        <Text className="font-bold text-lg text-black dark:text-white">
+                            {item.selectedAttribute ? item.selectedAttribute.price : item.price} {config.CurrencySymbol}
+                        </Text>
 
-                        >
+                        {/* Quantity Controls */}
+                        <View className="flex-row items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 p-1">
                             <TouchableOpacity
                                 onPress={() => handleDecreaseQuantity(item.id)}
-                                className="p-2 rounded-full bg-primary dark:bg-primary-dark"
-
+                                className="w-8 h-8 rounded-full bg-white dark:bg-gray-600 flex items-center justify-center shadow-sm border border-gray-200 dark:border-gray-600"
                                 activeOpacity={0.8}
                             >
-                                <Ionicons name="remove" size={16} color="white" />
+                                <Ionicons name="remove" size={16} color="#4b5563" />
                             </TouchableOpacity>
 
-                            <View className="px-4 py-1 min-w-[40px]">
-                                <Text
-                                    className="font-bold text-center text-black dark:text-white"
-
-                                >
+                            <View className="min-w-[32px]">
+                                <Text className="font-bold text-center px-1 text-black dark:text-white">
                                     {item.quantity}
                                 </Text>
                             </View>
 
                             <TouchableOpacity
                                 onPress={() => handleIncreaseQuantity(item.id)}
-                                className="p-2 rounded-full bg-primary dark:bg-primary-dark"
+                                className="w-8 h-8 rounded-full bg-primary dark:bg-primary-dark flex items-center justify-center shadow-sm"
                                 activeOpacity={0.8}
                             >
                                 <Ionicons name="add" size={16} color="white" />
