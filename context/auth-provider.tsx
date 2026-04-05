@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { config } from '@/constants/config';
+import * as SecureStore from 'expo-secure-store';
 
 export const AuthContext = createContext<any>(null);
 
@@ -39,7 +40,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
             const response = await axios.post(`${config.URL}/auth/login`, loginData);
             const user = response.data;
+            const token = response.data.token;
             await AsyncStorage.setItem('user', JSON.stringify(user));
+            await SecureStore.setItemAsync('token', token);
+        
             setAuth(user);
             return { success: true, data: user };
         } catch (error: any) {
@@ -59,7 +63,9 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             }
             const response = await axios.post(`${config.URL}/auth/register`, registerData);
             const user = response.data;
+            const token = response.data.token;
             await AsyncStorage.setItem('user', JSON.stringify(user));
+            await SecureStore.setItemAsync('token', token);
             setAuth(user);
             return { success: true, data: user };
         } catch (error: any) {

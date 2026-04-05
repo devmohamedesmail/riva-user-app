@@ -273,7 +273,11 @@
     "delete_account_failed": "فشل حذف الحساب",
     "password_mismatch": "كلمة المرور غير متطابقة",
     "password_incorrect": "كلمة المرور غير صحيحة",
-    "address": "العنوان"
+    "address": "العنوان",
+    "delete_account": "حذف الحساب",
+    "wallet_balance": "رصيد المحفظة",
+    "points": "النقاط",
+    "referral_code": "رمز الإحالة"
   },
   "navigation": {
     "home": "الرئيسية",

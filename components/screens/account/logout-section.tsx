@@ -95,7 +95,7 @@ export default function LogoutSection() {
 
                 className='bg-red-800 dark:bg-red-900 mx-4 mb-2 p-4 rounded-xl flex-row-reverse items-center justify-center'>
                 <View>
-                    <Text className='text-white font-semibold text-base'>{t("account.logout")}</Text>
+                    <Text className='text-white font-semibold text-base'>{t("account.delete_account")}</Text>
                 </View>
                 <View className='mx-2'>
                     <Ionicons name="trash" size={24} color="#ffffff" />

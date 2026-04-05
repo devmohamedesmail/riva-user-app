@@ -273,7 +273,11 @@
     "delete_account_failed": "Failed to delete account",
     "password_mismatch": "Password mismatch",
     "password_incorrect": "Password incorrect",
-    "address": "Address"
+    "address": "Address",
+    "delete_account": "Delete Account",
+    "wallet_balance": "Wallet Balance",
+    "points": "Points",
+    "referral_code": "Referral Code"
   },
   "navigation": {
     "home": "Home",
