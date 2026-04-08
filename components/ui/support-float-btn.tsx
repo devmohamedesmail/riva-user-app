@@ -10,34 +10,36 @@ import {
     StyleSheet,
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import { useSetting } from '@/hooks/useSetting'
+import MainFab from './main-fab'
+import FloatContactButton from './float-contact-button'
 
-// ─── Config ───────────────────────────────────────────────────────────────────
-const SUPPORT_PHONE = '+201000000000'   // ← replace with your number
-const WHATSAPP_NUMBER = '201000000000'  // ← replace (no + sign for wa.me)
 
-const ACTIONS = [
-    {
-        id: 'whatsapp',
-        icon: 'logo-whatsapp' as const,
-        label: 'WhatsApp',
-        color: '#fff',
-        bg: '#25D366',
-        onPress: () => Linking.openURL(`https://wa.me/${WHATSAPP_NUMBER}`),
-    },
-    {
-        id: 'call',
-        icon: 'call' as const,
-        label: 'Call Us',
-        color: '#fff',
-        bg: '#4F46E5',
-        onPress: () => Linking.openURL(`tel:${SUPPORT_PHONE}`),
-    },
-]
+
+
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function SupportFloatBtn() {
     const [open, setOpen] = useState(false)
-
+    const { settings } = useSetting()
+    const ACTIONS = [
+        {
+            id: 'whatsapp',
+            icon: 'logo-whatsapp' as const,
+            label: 'WhatsApp',
+            color: '#fff',
+            bg: '#25D366',
+            onPress: () => Linking.openURL(`https://wa.me/${settings?.support_whatsapp}`),
+        },
+        {
+            id: 'call',
+            icon: 'call' as const,
+            label: 'Call Us',
+            color: '#fff',
+            bg: '#4F46E5',
+            onPress: () => Linking.openURL(`tel:${settings?.support_phone}`),
+        },
+    ]
     const rotation = useRef(new Animated.Value(0)).current
     const backdropAnim = useRef(new Animated.Value(0)).current
     const itemAnims = useRef(
@@ -88,16 +90,21 @@ export default function SupportFloatBtn() {
         outputRange: ['0deg', '45deg'],
     })
 
+
+
+
+
+
     return (
         <>
             {/* ── Backdrop ── */}
-            <Animated.View
+            {/* <Animated.View
                 pointerEvents={open ? 'auto' : 'none'}
                 className="absolute inset-0 bg-black/40"
                 style={{ opacity: backdropAnim, zIndex: 98 }}
             >
-                <Pressable style={StyleSheet.absoluteFill}  onPress={toggle} />
-            </Animated.View>
+                <Pressable style={StyleSheet.absoluteFill} onPress={toggle} />
+            </Animated.View> */}
 
             {/* ── Container ── */}
             <View
@@ -105,96 +112,14 @@ export default function SupportFloatBtn() {
                 style={{ zIndex: 99 }}
                 pointerEvents="box-none"
             >
-                {/* ── Action Items ── */}
                 {ACTIONS.map((action, i) => (
-                    <Animated.View
-                        key={action.id}
-                        className="absolute bottom-0 right-0 flex-row items-center gap-2.5"
-                        style={{
-                            opacity: itemAnims[i].opacity,
-                            transform: [
-                                { translateY: itemAnims[i].translateY },
-                                { scale: itemAnims[i].scale },
-                            ],
-                        }}
-                    >
-                        {/* Label pill */}
-                        <View className="bg-indigo-950 px-3 py-1 rounded-full">
-                            <Text className="text-white text-xs font-semibold tracking-wide">
-                                {action.label}
-                            </Text>
-                        </View>
-
-                        {/* Action button */}
-                        <TouchableOpacity
-                            activeOpacity={0.85}
-                            onPress={() => { action.onPress(); toggle() }}
-                            className="w-12 h-12 rounded-full items-center justify-center"
-                            style={[
-                                { backgroundColor: action.bg },
-                                Platform.OS === 'ios'
-                                    ? { shadowColor: '#000', shadowOpacity: 0.25, shadowRadius: 10, shadowOffset: { width: 0, height: 4 } }
-                                    : { elevation: 8 },
-                            ]}
-                        >
-                            <Ionicons name={action.icon} size={22} color={action.color} />
-                        </TouchableOpacity>
-                    </Animated.View>
+                    <FloatContactButton key={action.id} action={action} toggle={toggle} i={i} itemAnims={itemAnims} />
                 ))}
 
-                {/* ── Main FAB ── */}
-                <TouchableOpacity
-                    activeOpacity={0.9}
-                    onPress={toggle}
-                    className="w-15 h-15 rounded-full bg-primary items-center justify-center overflow-visible"
-                    style={[
-                        { width: 60, height: 60 },
-                        Platform.OS === 'ios'
-                            ? { shadowColor: '#4F46E5', shadowOpacity: 0.45, shadowRadius: 16, shadowOffset: { width: 0, height: 8 } }
-                            : { elevation: 10 },
-                    ]}
-                >
-                    {/* Pulse ring */}
-                    {!open && <PulseRing />}
-
-                    <Animated.View style={{ transform: [{ rotate: rotateInterpolate }] }}>
-                        <Ionicons name="headset" size={26} color="#fff" />
-                    </Animated.View>
-                </TouchableOpacity>
+                <MainFab toggle={toggle} open={open}  />
             </View>
         </>
     )
 }
 
-// ─── Pulse Ring ───────────────────────────────────────────────────────────────
-function PulseRing() {
-    const scale = useRef(new Animated.Value(1)).current
-    const opacity = useRef(new Animated.Value(0.6)).current
 
-    React.useEffect(() => {
-        const pulse = Animated.loop(
-            Animated.parallel([
-                Animated.sequence([
-                    Animated.timing(scale, { toValue: 1.65, duration: 900, useNativeDriver: true }),
-                    Animated.timing(scale, { toValue: 1, duration: 900, useNativeDriver: true }),
-                ]),
-                Animated.sequence([
-                    Animated.timing(opacity, { toValue: 0, duration: 900, useNativeDriver: true }),
-                    Animated.timing(opacity, { toValue: 0.6, duration: 900, useNativeDriver: true }),
-                ]),
-            ])
-        )
-        pulse.start()
-        return () => pulse.stop()
-    }, [])
-
-    return (
-        <Animated.View
-            className="absolute rounded-full bg-primary"
-            style={[
-                { width: 60, height: 60, zIndex: -1 },
-                { transform: [{ scale }], opacity },
-            ]}
-        />
-    )
-}

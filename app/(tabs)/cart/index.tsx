@@ -1,4 +1,5 @@
 import CartAction from '@/components/screens/cart/cart-action'
+import CartHeader from '@/components/screens/cart/cart-header'
 import CartItem from '@/components/screens/cart/cart-item'
 import CartSummary from '@/components/screens/cart/cart-summery'
 import EmptyCart from '@/components/screens/cart/empty-cart'
@@ -15,7 +16,8 @@ export default function Cart() {
   const cart = useAppSelector(selectCart);
   return (
     <Layout>
-      <Header title={t('navigation.cart')} />
+      <CartHeader />
+
 
       {cartItems.length === 0 ? <EmptyCart /> : (<>
         <ScrollView

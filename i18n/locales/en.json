@@ -562,7 +562,8 @@
   "checkout": {
     "title": "Checkout",
     "items": "items",
-    "subtotal": " Subtotal "
+    "subtotal": " Subtotal ",
+    "priceNote": "Prices and delivery fees may change as the app is currently under testing."
   },
   "introModal": {
     "title": "Discover Amazing Deals! 🎉",

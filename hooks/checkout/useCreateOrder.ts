@@ -11,6 +11,7 @@ import Toast from 'react-native-toast-message';
 import { CartItem } from '@/@types/cart';
 import axios from 'axios';
 import { config } from '@/constants/config';
+import { useSetting } from '../useSetting';
 
 export default function useCreateOrder() {
     const { t } = useTranslation();
@@ -29,13 +30,13 @@ export default function useCreateOrder() {
     const filteredAreas = areas?.filter((area: any) =>
         area.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
-
+   
 
 
 
     const formik = useFormik({
         initialValues: {
-            customer_name:"",
+            customer_name: "",
             phone: "",
             address: "",
             area_id: "",
@@ -64,7 +65,6 @@ export default function useCreateOrder() {
                     return;
                 }
 
-                // ✅ 1. group by store_id (Type-safe)
                 const groupedByStore = cartItems.reduce<Record<number, CartItem[]>>(
                     (acc, item) => {
                         if (!acc[item.store_id]) {
@@ -75,6 +75,8 @@ export default function useCreateOrder() {
                     },
                     {}
                 );
+
+
 
                 // ✅ 2. create request لكل store
                 const requests = Object.keys(groupedByStore).map((storeId) => {
@@ -103,7 +105,7 @@ export default function useCreateOrder() {
 
                         // total_price:  Number(selectedArea?.price || 0) + Number(storeTotal.toFixed(2)),
                         total_price: Number(storeTotal.toFixed(2)),
-                        customer_name:values.customer_name,
+                        customer_name: values.customer_name,
                         delivery_address: values.address,
                         phone: values.phone,
                         area_id: selectedArea?.id,
@@ -117,7 +119,7 @@ export default function useCreateOrder() {
                 setSuccessModalVisible(true);
                 formik.resetForm();
             } catch (error) {
-                
+
 
                 Toast.show({
                     type: "error",
@@ -129,6 +131,17 @@ export default function useCreateOrder() {
             }
         },
     });
+    const storeCount = Object.keys(
+        cartItems.reduce<Record<number, CartItem[]>>((acc, item) => {
+            if (!acc[item.store_id]) {
+                acc[item.store_id] = [];
+            }
+            acc[item.store_id].push(item);
+            return acc;
+        }, {})
+    ).length;
+
+
 
     return {
         t,
@@ -142,6 +155,7 @@ export default function useCreateOrder() {
         setSearchQuery,
         filteredAreas,
         setSelectedArea,
-        setModalVisible
+        setModalVisible,
+        storeCount
     }
 }

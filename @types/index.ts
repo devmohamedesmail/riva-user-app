@@ -31,6 +31,7 @@ export interface Setting {
 
   maintenance_mode: boolean
   maintenance_message: string | null
+  order_extra_ratio: string | null
 }
 
 export interface SettingContextType {
