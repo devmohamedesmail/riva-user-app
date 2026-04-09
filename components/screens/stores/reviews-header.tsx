@@ -19,7 +19,7 @@ export default function ReviewsHeader() {
                 >
                     <AntDesign name="arrow-left" size={20} color="black" />
                 </Pressable>
-                <Text className="text-xl font-bold text-white flex-1" style={{ textAlign: isRTL ? 'right' : 'left' }}>
+                <Text className="text-xl font-cairo text-white flex-1" style={{ textAlign: isRTL ? 'right' : 'left' }}>
                     {t('reviews.title')}
                 </Text>
             </View>

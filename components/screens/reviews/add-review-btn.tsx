@@ -1,10 +1,11 @@
 import { useAuth } from '@/hooks/useAuth'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Pressable, Text } from 'react-native'
+import { Pressable } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons';
+import Text from '@/components/ui/text';
 
 export default function AddReviewBtn({ bottomSheetRef }: any) {
     const { auth } = useAuth()
@@ -30,7 +31,7 @@ export default function AddReviewBtn({ bottomSheetRef }: any) {
                 className="flex-row items-center px-6 py-4 rounded-full"
             >
                 <Ionicons name="add-circle-outline" size={24} color="white" />
-                <Text className="text-white font-bold text-base ml-2">
+                <Text className="text-white cairoBold text-base ml-2">
                     {t('reviews.addReview')}
                 </Text>
             </LinearGradient>

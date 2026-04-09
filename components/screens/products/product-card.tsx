@@ -1,38 +1,15 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity, Alert, ScrollView, Pressable } from "react-native";
+import { View,Image, Pressable } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useTranslation } from "react-i18next";
-import Modal from "react-native-modal";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { addToCart, clearCart } from "@/redux/slices/cartSlice";
-import Toast from "react-native-toast-message";
 import AddCartModal from "@/components/ui/add-cart-modal";
 import { useAddToCart } from "@/hooks/useAddToCart";
-import QuantityControlSection from "@/components/ui/quantity-control-section";
-import AddCartModalHeader from "@/components/ui/add-cart-modal-header";
-import ModalSelectOption from "@/components/ui/modal-select-option";
+import Text from "@/components/ui/text";
+import { Product } from "@/@types/stores";
 
 
-interface Attribute {
-  name: string;
-  values: { value: string; price: number }[];
-}
 
-interface Product {
-  id: number;
-  name: string;
-  image: string;
-  description: string;
-  price: number;
-  on_sale: boolean;
-  sale_price: number | null;
-  stock: number;
-  business_id: number;
-  category_id: number;
-  attributes?: Attribute[];
-  product_type: string;
-}
+
 
 export default function ProductCard({ item, store }: { item: Product; store: any }) {
   const { t } = useTranslation();
@@ -95,7 +72,7 @@ export default function ProductCard({ item, store }: { item: Product; store: any
           />
         ) : (
           <View className="bg-gray-200 h-44 items-center justify-center">
-            <Text className="text-gray-600 text-xl text-center mt-1">
+            <Text className="text-black dark:text-white text-xl text-center mt-1 font-cairo">
               {store.name}
             </Text>
           </View>
@@ -115,7 +92,7 @@ export default function ProductCard({ item, store }: { item: Product; store: any
 
 
       <View className="my-2 px-2">
-        <Text className="text-black dark:text-white text-center font-semibold mt-2">
+        <Text className="text-black dark:text-white text-center font-cairo mt-2">
           {item.name}
         </Text>
       </View>
@@ -132,22 +109,22 @@ export default function ProductCard({ item, store }: { item: Product; store: any
             <>
               {item.on_sale && item.sale_price ? (
                 <>
-                  <Text className="text-primary font-bold text-md">
+                  <Text className="text-primary font-cairo text-md">
                     {item.sale_price} {t("common.currency")}
                   </Text>
-                  <Text className="text-gray-400 line-through text-xs ml-2">
+                  <Text className="text-gray-400 line-through font-cairo text-xs ml-2">
                     {item.price} {t("common.currency")}
                   </Text>
                 </>
               ) : (
-                <Text className="text-primary font-bold text-sm">
+                <Text className="text-primary font-cairo text-sm">
                   {item.price} {t("common.currency")}
                 </Text>
               )}
 
 
             </>) : (<Text>
-              <Text className="text-primary font-bold text-sm">
+              <Text className="text-primary font-cairo text-sm">
                 {priceRange?.min} - {priceRange?.max} {t("common.currency")}
               </Text>
             </Text>)}

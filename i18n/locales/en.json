@@ -243,7 +243,8 @@
     "searchForStores": "Search for stores...",
     "tryDifferentKeywords": "Try different keywords",
     "checkBackLater": "Check back later for great stores!",
-    "reviews": "reviews"
+    "reviews": "reviews",
+    "total":"Total Products"
   },
   "account": {
     "title": "Account",

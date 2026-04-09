@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native'
+import { View, Pressable, ScrollView, Image } from 'react-native'
 import useFetch from '@/hooks/useFetch'
+import Text from '@/components/ui/text'
 
 
 export default function CategoriesSection({
@@ -17,7 +18,7 @@ export default function CategoriesSection({
             {categories && categories.length > 0 && (
                 <View className="px-5 py-3">
                     <View className="flex-row items-center">
-                        <TouchableOpacity
+                        <Pressable
                             onPress={() => setSelectedCategory(null)}
                             className={`mr-2 px-4 py-2 rounded-md flex flex-row items-center ${selectedCategory === null ? "bg-primary" : "bg-gray-200"
                                 }`}
@@ -28,20 +29,20 @@ export default function CategoriesSection({
                             >
                                 {t("stores.all")}
                             </Text>
-                        </TouchableOpacity>
+                        </Pressable>
 
                         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                             {categories.map((cat: any) => (
-                                <TouchableOpacity
+                                <Pressable
                                     key={cat.id}
                                     onPress={() => setSelectedCategory(cat.id)}
-                                    className={`mr-2 px-4 py-2 rounded-md flex flex-row items-center ${selectedCategory === cat.id ? "bg-primary" : "bg-gray-200"
+                                    className={`mr-2 px-4 py-1 rounded-md flex flex-row items-center ${selectedCategory === cat.id ? "bg-primary" : "bg-gray-200"
                                         }`}
                                 >
 
                                     <Image
                                     source={{ uri: cat.image }}
-                                    className="w-10 h-10 rounded-md"
+                                    className="w-8 h-8 rounded-md"
                                     />
                                     <Text
                                         className={`font-semibold mx-2 ${selectedCategory === cat.id
@@ -51,7 +52,7 @@ export default function CategoriesSection({
                                     >
                                         {cat.name}
                                     </Text>
-                                </TouchableOpacity>
+                                </Pressable>
                             ))}
                         </ScrollView>
                     </View>

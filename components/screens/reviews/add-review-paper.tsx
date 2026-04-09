@@ -1,16 +1,13 @@
 import BottomPaper from '@/components/ui/bottom-paper'
 import { useTranslation } from 'react-i18next'
-import { Pressable, Text, View, TextInput } from 'react-native'
-import Modal from '@/components/ui/modal'
+import { Pressable, View } from 'react-native'
 import { config } from '@/constants/config'
 import { useAuth } from '@/hooks/useAuth'
 import { Ionicons } from '@expo/vector-icons'
 import axios from 'axios'
-import { LinearGradient } from 'expo-linear-gradient'
-import { useRouter } from 'expo-router'
 import { useFormik } from 'formik'
 import React, { useState } from 'react'
-
+import Text from '@/components/ui/text'
 import * as Yup from 'yup'
 import Button from '@/components/ui/button'
 import TextArea from '@/components/ui/textarea'
@@ -21,7 +18,6 @@ export default function AddReviewPaper({ bottomSheetRef, id,refetch }: any) {
     const [submitting, setSubmitting] = useState(false);
     const isRTL = i18n.language === 'ar';
     const { auth } = useAuth();
-    const router = useRouter()
 
 
 
@@ -90,12 +86,12 @@ export default function AddReviewPaper({ bottomSheetRef, id,refetch }: any) {
     return (
         <BottomPaper ref={bottomSheetRef} snapPoints={['60%']}>
             <View className="flex-1 px-5 pb-8 ">
-                <Text className="text-xl font-bold mb-4 text-center text-black dark:text-white arabic-font-bold mt-2">
+                <Text className="text-xl mb-4 text-center text-black dark:text-white cairoBold mt-2">
                     {t('reviews.writeReview')}
                 </Text>
                 <View>
                     <View className="mb-6">
-                        <Text className="text-base font-semibold text-gray-700 mb-3" style={{ textAlign: isRTL ? 'right' : 'left' }}>
+                        <Text className="text-base text-gray-700 mb-3" style={{ textAlign: isRTL ? 'right' : 'left' }}>
                             {t('reviews.yourRating')}
                         </Text>
                         <View className="flex-row justify-center">
@@ -125,30 +121,6 @@ export default function AddReviewPaper({ bottomSheetRef, id,refetch }: any) {
                         )}
                     </View>
 
-                    {/* Review Text */}
-                    {/* <View className="mb-6">
-                        <Text className="text-base font-semibold text-gray-700 mb-3" style={{ textAlign: isRTL ? 'right' : 'left' }}>
-                            {t('reviews.yourReview')}
-                        </Text>
-                        <TextInput
-                            className="bg-gray-50 rounded-xl p-4 text-gray-900 min-h-[120px]"
-                            placeholder={t('reviews.writeYourReview')}
-                            placeholderTextColor="#9CA3AF"
-                            multiline
-                            numberOfLines={5}
-                            textAlignVertical="top"
-                            value={formik.values.comment}
-                            onChangeText={formik.handleChange('comment')}
-                            onBlur={formik.handleBlur('comment')}
-                            style={{ textAlign: isRTL ? 'right' : 'left' }}
-                        />
-                       
-                        {formik.touched.comment && formik.errors.comment && (
-                            <Text className="text-red-500 text-sm mt-2" style={{ textAlign: isRTL ? 'right' : 'left' }}>
-                                {formik.errors.comment}
-                            </Text>
-                        )}
-                    </View> */}
 
                     <TextArea
                         label={t('reviews.yourReview')}

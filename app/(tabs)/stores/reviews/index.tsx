@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '@/components/ui/layout'
-import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
-import { useLocalSearchParams, useRouter } from 'expo-router'
+import { ScrollView, View, TouchableOpacity } from 'react-native'
+import { useLocalSearchParams } from 'expo-router'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -9,15 +9,13 @@ import ReviewsHeader from '@/components/screens/stores/reviews-header'
 import OverallRating from '@/components/screens/stores/overall-rating'
 import ReviewLoading from '@/components/screens/stores/reviews-loading'
 import NoReviews from '@/components/screens/stores/no-reviews'
-
 import { useStoreReviews } from '@/hooks/useStoreReviews'
 import BottomSheet from '@gorhom/bottom-sheet'
 import { useRef } from 'react'
-
 import AddReviewPaper from '@/components/screens/reviews/add-review-paper'
-import { useAuth } from '@/hooks/useAuth'
 import AddReviewBtn from '@/components/screens/reviews/add-review-btn'
 import ReviewItem from '@/components/screens/reviews/review-item'
+import Text from '@/components/ui/text'
 
 export default function Reviews() {
     const bottomSheetRef = useRef<BottomSheet>(null);
@@ -56,7 +54,7 @@ export default function Reviews() {
 
                     <View className="mx-5 mb-6">
                         <View className="flex-row justify-between items-center mb-4">
-                            <Text className="text-xl font-bold text-gray-900">
+                            <Text className="text-xl cairoBold text-gray-900">
                                 {filterRating ? `${filterRating} ${t('reviews.stars')}` : t('reviews.allReviews')}
                             </Text>
                             {filterRating && (

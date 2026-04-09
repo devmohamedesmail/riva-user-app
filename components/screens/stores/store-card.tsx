@@ -1,40 +1,23 @@
 import { useRouter } from 'expo-router'
 import React from 'react'
-import { TouchableOpacity, View, Text, Image } from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient'
+import { TouchableOpacity, View, Image, Pressable } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { useTranslation } from 'react-i18next'
+import Text from '@/components/ui/text'
+import { Store } from '@/@types/stores'
 
 
 
-interface StoreItem {
-  id: number;
-  name: string;
-  address: string;
-  phone: string;
-  logo: string;
-  banner: string;
-  start_time: string;
-  end_time: string;
-  delivery_time: string;
-  delivery_fee: string;
-  rating: string;
-  review_count: number;
-  is_active: boolean;
-  is_verified: boolean;
-  business_type_id: number;
-  avg_rating: string;
-  total_reviews: number;
-}
 
-export default function StoreCard({ item }: { item: StoreItem }) {
+
+export default function StoreCard({ item }: { item: Store }) {
   const { t } = useTranslation()
   const router = useRouter();
 
 
   return (
-    <TouchableOpacity
-      activeOpacity={0.9}
+    <Pressable
+    
       onPress={() => {
         router.push({
           pathname: '/stores/products',
@@ -53,7 +36,7 @@ export default function StoreCard({ item }: { item: StoreItem }) {
 
         <View className='px-4 pb-4'>
 
-          <Text className='text-xl mt-3 font-extrabold text-black text-center dark:text-white' numberOfLines={1}>
+          <Text className='text-xl mt-3 font-cairo-bold text-black text-center dark:text-white' numberOfLines={1}>
             {item.name}
           </Text>
 
@@ -86,6 +69,6 @@ export default function StoreCard({ item }: { item: StoreItem }) {
 
         </View>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   )
 }

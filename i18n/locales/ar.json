@@ -243,7 +243,8 @@
     "searchForStores": "ابحث عن المتاجر...",
     "tryDifferentKeywords": "جرب كلمات مفتاحية مختلفة",
     "checkBackLater": "تحقق مرة أخرى لاحقًا للحصول على متاجر !",
-    "reviews": " تقييمات "
+    "reviews": " تقييمات ",
+    "total":" اجمالي المنتجات "
   },
   "account": {
     "title": " الحساب ",

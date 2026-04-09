@@ -27,7 +27,7 @@ export default function OverallRating({id, name, logo, total_reviews}:any) {
                   />
                 ))}
               </View>
-              <Text className="text-white text-base opacity-90">
+              <Text className="text-white text-base opacity-90 font-cairo">
                 {t('reviews.basedOnReviews', { count: total_reviews || 0 })}
               </Text>
             </View>

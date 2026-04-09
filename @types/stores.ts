@@ -9,11 +9,14 @@ export interface Store {
     start_time: string
     end_time: string
     devlivery_time: string | null
-    avg_rating: number
+    avg_rating: string
     total_reviews: number
     is_active: boolean
     is_verified: boolean
     is_featured: boolean
+    business_type_id: number
+   
+  
 }
 
 export interface Product {
@@ -27,4 +30,11 @@ export interface Product {
   stock: number;
   business_id: number;
   category_id: number;
+  attributes?: Attribute[];
+  product_type: string;
+}
+
+export interface Attribute {
+  name: string;
+  values: { value: string; price: number }[];
 }

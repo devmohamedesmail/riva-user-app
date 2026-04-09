@@ -5,7 +5,7 @@ import Layout from '@/components/ui/layout'
 import ProductsHeader from '@/components/screens/products/products-header'
 import CategoriesSection from '@/components/screens/stores/categories-section'
 import Loading from '@/components/ui/loading'
-import { FlatList, View, TouchableOpacity, Text, Pressable } from 'react-native'
+import { FlatList, View, Text, Pressable } from 'react-native'
 import ProductCard from '@/components/screens/products/product-card'
 import ProductListCard from '@/components/screens/products/product-list-card'
 import NoProducts from '@/components/screens/products/no-products'
@@ -35,9 +35,11 @@ export default function Products() {
         selectedCategory={selectedCategory}
         t={t}
       />
+
+
       <View className="flex-row justify-between items-center px-4 pt-1 pb-3">
-        <Text className="text-gray-600 dark:text-gray-300 font-medium">
-           {filteredProducts?.length || 0} {t("products.total", { defaultValue: "Products" })}
+        <Text className="text-gray-600 dark:text-gray-300 font-cairo-bold">
+           {t("stores.total")} : {filteredProducts?.length || 0}
         </Text>
         <View className="flex-row items-center space-x-2 gap-2">
           <Pressable 
