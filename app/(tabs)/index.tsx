@@ -6,7 +6,7 @@ import { usePlace } from '@/hooks/usePlace'
 import SlideShow from '@/components/screens/home/side-show'
 import StoreTypesSection from '@/components/screens/home/store-types-section';
 import HomeHeader from '@/components/screens/home/home-header';
-import { ScrollView } from 'react-native'
+import { ScrollView, Text } from 'react-native'
 import HomeSearch from '@/components/screens/home/home-search';
 import FeaturedStores from '@/components/screens/home/featured-stores';
 import { RefreshControl } from 'react-native-gesture-handler';
@@ -46,6 +46,7 @@ export default function Home() {
         <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />} >
           <HomeSearch />
           <SlideShow />
+       
           <StoreTypesSection />
           <FeaturedStores />
         </ScrollView>

@@ -5,12 +5,21 @@ import AppProviders from '@/providers'
 import '../i18n/i18n'
 import IntroModal from '@/components/ui/intro-modal'
 import Splash from '@/components/ui/splash'
-
+import { useFonts, Cairo_400Regular, Cairo_700Bold } from '@expo-google-fonts/cairo'
+import { Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/poppins";
 
 
 
 export default function RootLayout() {
     const [showSplash, setShowSplash] = useState(true)
+    const [fontsLoaded] = useFonts({
+        Cairo_400Regular,
+        Cairo_700Bold,
+        Poppins_400Regular,
+        Poppins_600SemiBold
+    })
+
+    //   if (!fontsLoaded) return null
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -20,7 +29,11 @@ export default function RootLayout() {
         return () => clearTimeout(timer)
     }, [])
 
-    if (showSplash) {
+    // if (showSplash) {
+    //     return <Splash />
+    // }
+
+    if (!fontsLoaded || showSplash) {
         return <Splash />
     }
     return (
