@@ -1,12 +1,10 @@
-import React,{useState,useEffect} from 'react'
-import { View,Text } from 'react-native'
+import React from 'react'
+import { View } from 'react-native'
 import { useTranslation } from 'react-i18next';
-import axios from 'axios';
-import { usePlace } from '@/hooks/usePlace';
-import { config } from '@/constants/config';
 import Skeleton from '@/components/ui/skeleton';
 import StoreTypeItem from './store-type-item';
 import { useStoreTypes } from '@/hooks/useStoreTypes';
+import Text from '@/components/ui/text';
 
 interface StoreType {
   id: number;
@@ -39,11 +37,7 @@ export default function StoreTypesSection() {
 
     return (
         <View className='mb-1'>
-            <Text
-                className={`text-xl font-extrabold py-5 text-black dark:text-white my-1 px-5 ${i18n.language === 'ar' ? 'text-right' : 'text-left'}`}    
-            >
-                {t('home.store_types_title')}
-            </Text>
+            <Text className='text-xl mt-10 cairoBold  mb-5 px-2'>  {t('home.store_types_title')} </Text>
             <View className={`flex flex-row justify-between flex-wrap mb-4 mt-1 px-3 gap-1 ${i18n.language === 'ar' ? 'flex-row-reverse' : ''}`}>
                 {data && data.map((storeType:StoreType) => (
                     <StoreTypeItem key={storeType.id} storeType={storeType} />

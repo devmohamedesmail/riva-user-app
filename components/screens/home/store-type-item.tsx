@@ -2,7 +2,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Animated, Image, Pressable, Text } from 'react-native';
+import { Animated, Image, Pressable } from 'react-native';
+import Text from '@/components/ui/text';
 
 export default function StoreTypeItem({ storeType }: any) {
   const { t, i18n } = useTranslation();
@@ -53,11 +54,7 @@ export default function StoreTypeItem({ storeType }: any) {
           colors={['transparent', 'rgba(0,0,0,0.7)', 'rgba(0,0,0,0.9)']}
           className="absolute bottom-0 left-0 right-0 h-16 justify-end pb-3 px-2"
         >
-          <Text
-            className="text-center text-white text-xs font-bold"
-            numberOfLines={2}
-            style={{ textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 2 }}
-          >
+          <Text className='text-white  cairoBold text-center text-md'>
             {i18n.language === 'ar' ? storeType.name_ar : storeType.name_en}
           </Text>
         </LinearGradient>

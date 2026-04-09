@@ -31,7 +31,7 @@ export default function HomeSearch() {
                     onChangeText={setSearchQuery}
                     onSubmitEditing={handleSearch}
                     returnKeyType="search"
-                    className={`flex-1 mx-3 text-base text-text dark:text-text-dark ${i18n.language === 'ar' ? 'text-right' : 'text-left'
+                    className={`flex-1 mx-3 text-base  text-text dark:text-text-dark ${i18n.language === 'ar' ? 'text-right font-cairo' : 'text-left font-poppins'
                         }`}
                     cursorColor="#fd4a12"
                     placeholderTextColor="#9ca3af"

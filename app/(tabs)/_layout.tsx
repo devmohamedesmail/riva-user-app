@@ -1,9 +1,9 @@
-import { Tabs } from 'expo-router'
-import React from 'react'
-import { Ionicons } from '@expo/vector-icons'
-import { useAppSelector, selectCartTotalItems } from "@/redux/hooks";
 import colors from '@/constants/colors';
+import { selectCartTotalItems, useAppSelector } from "@/redux/hooks";
+import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
 import { useColorScheme } from 'nativewind';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 export default function Layout() {
     const totalItems = useAppSelector(selectCartTotalItems);
