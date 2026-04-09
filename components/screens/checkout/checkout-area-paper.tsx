@@ -3,9 +3,10 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import NoAreaFound from './no-area-found';
 import colors from '@/constants/colors';
-import { TouchableOpacity, TextInput, View, Text } from 'react-native';
+import { TouchableOpacity, TextInput, View } from 'react-native';
 import BottomPaper from '@/components/ui/bottom-paper';
 import { useTranslation } from 'react-i18next';
+import Text from '@/components/ui/text';
 export default function CheckoutAreaPaper({ bottomSheetRef, formik, searchQuery, setSearchQuery, filteredAreas, setSelectedArea }: any) {
     const { t } = useTranslation();
     return (
@@ -22,7 +23,7 @@ export default function CheckoutAreaPaper({ bottomSheetRef, formik, searchQuery,
 
 
                 {/* Search Input */}
-                <View className="px-6 pt-4">
+                <View className="px-6 pt-4 mb-4">
                     <View className="flex-row items-center bg-gray-50 rounded-2xl px-4 py-3 border border-gray-200">
                         <AntDesign name="search" size={18} color={colors.light.tabIconSelected} />
                         <TextInput

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Pressable, View, Text, ActivityIndicator } from 'react-native'
+import { Pressable, View,  ActivityIndicator } from 'react-native'
+import Text from '@/components/ui/text'
 import clsx from 'clsx'
 
 type ButtonVariant = 'primary' | 'danger' | 'outline'
@@ -62,7 +63,7 @@ export default function Button({
         <>
           <Text
             className={clsx(
-              'font-bold',
+              'cairoBold',
               variant === 'outline'
                 ? 'text-primary'
                 : 'text-white',

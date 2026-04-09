@@ -1,13 +1,13 @@
 import { config } from "@/constants/config";
 import { deleteFromCart, updateQuantity } from "@/redux/slices/cartSlice";
 import React, { useState } from "react";
-import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Image, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Ionicons } from "@expo/vector-icons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { selectCartItems, useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useColorScheme } from "nativewind";
 import ItemDeleteModal from "./item-delete-modal";
+import Text from "@/components/ui/text";
 
 
 export default function CartItem({ item }: any) {
@@ -64,7 +64,7 @@ export default function CartItem({ item }: any) {
                     <View className="flex-row justify-between items-start">
                         <View className="flex-1 pr-2">
                             <Text
-                                className="text-base font-bold text-black dark:text-white"
+                                className="text-black cairoBold text-black dark:text-white"
                                 numberOfLines={2}
                             >
                                 {item.name}
@@ -89,7 +89,7 @@ export default function CartItem({ item }: any) {
                     )}
 
                     <View className="flex-row items-end justify-between mt-2 flex-1">
-                        <Text className="font-bold text-lg text-black dark:text-white">
+                        <Text className="text-lg cairo-font text-black dark:text-white">
                             {item.selectedAttribute ? item.selectedAttribute.price : item.price} {config.CurrencySymbol}
                         </Text>
 

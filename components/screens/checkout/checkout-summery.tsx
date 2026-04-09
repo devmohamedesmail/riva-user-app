@@ -1,9 +1,10 @@
 import React from 'react'
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { config } from '@/constants/config';
 import { useAppSelector } from '@/redux/hooks';
 import { useSetting } from '@/hooks/useSetting';
+import Text from '@/components/ui/text';
 
 export default function CheckoutSummery({selectedArea,storeCount}: {selectedArea: any,storeCount:number}) {
     const totalPrice = useAppSelector((state) => state.cart.totalPrice);
@@ -35,23 +36,34 @@ const finalTotal = Number(totalPrice.toFixed(2)) + deliveryTotal;
 
           <View className={`flex-row justify-between items-center mb-2 ${i18n.language === "ar" ? " flex-row-reverse" : ""}`}>
             <Text className="text-gray-600">{t("order.deliveryFee")}</Text>
-            <Text className="font-semibold text-gray-900">
+            {/* <Text className="font-semibold text-gray-900">
               {config.CurrencySymbol} 
               {deliveryTotal}
-              {/* {selectedArea?.price} */}
-            </Text>
+              
+            </Text> */}
+            {selectedArea ? (
+              <Text className="text-gray-600">
+                {config.CurrencySymbol} {" "}
+                {deliveryTotal}
+              </Text>
+            ):(
+              <Text className="text-gray-600">
+                -----
+                {/* {t("order.selectyourArea")} */}
+              </Text>
+            )}
           </View>
 
           <View className="border-t border-gray-200 pt-3">
             <View
               className={`flex-row justify-between items-center mb-2 ${i18n.language === "ar" ? " flex-row-reverse" : ""}`}
             >
-              <Text className="text-lg font-bold text-gray-900">
+              <Text className="text-lg cairo-bold text-gray-900">
                 {t("order.total")}
               </Text>
              
               {selectedArea ? ( 
-                <Text className="text-lg font-bold text-gray-900">
+                <Text className="text-lg cairo-bold text-gray-900">
                 {config.CurrencySymbol}{" "} {" "} 
                 {/* {Number(selectedArea?.price * storeCount -1 * Number(settings?.order_extra_ratio)) + Number(totalPrice.toFixed(2))} */}
                 {finalTotal}
