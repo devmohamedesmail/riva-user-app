@@ -1,7 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { usePlace } from './usePlace';
 import { config } from '@/constants/config';
+
+export interface Banner {
+  id: number;
+  image: string;
+  title: string;
+  slug: string;
+  content: string;
+  is_published: boolean;
+}
 
 export const useBanners = () => {
     

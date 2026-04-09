@@ -67,7 +67,8 @@
     "starts_from": "Start from",
     "search_error": "Search error",
     "search_error_description": "Please try again",
-    "sale": "Sale"
+    "sale": "Sale",
+    "more": "See More"
   },
   "auth": {
     "welcomeBack": "Welcome back!",

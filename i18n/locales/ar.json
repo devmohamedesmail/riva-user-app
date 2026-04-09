@@ -67,7 +67,8 @@
     "starts_from": " يبدأ من ",
     "search_error": " خطأ في البحث ",
     "search_error_description": " يرجى المحاولة مرة أخرى ",
-    "sale": " عرض "
+    "sale": " عرض ",
+    "more": " عرض المزيد "
   },
   "auth": {
     "welcomeBack": "مرحباً بعودتك!",

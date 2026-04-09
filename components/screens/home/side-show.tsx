@@ -1,30 +1,24 @@
-import useFetch from '@/hooks/useFetch'
+
 import React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View } from 'react-native'
 import Swiper from 'react-native-swiper'
-import { LinearGradient } from 'expo-linear-gradient'
 import { useTheme } from '@/hooks/useTheme'
 import colors from '@/constants/colors'
 import Skeleton from '@/components/ui/skeleton'
-import { useBanners } from '@/hooks/useBanners'
+import { useBanners } from '@/hooks/banners/useBanners'
+import { useTranslation } from 'react-i18next'
+import BannerItem from './banner-item'
+import { Banner } from '@/hooks/banners/useBanners'
 
 
 
 
-interface Banner {
-  id: number;
-  image: string;
-  title: string;
-  slug: string;
-  content: string;
-  is_published: boolean;
-}
 
 export default function SlideShow() {
   const { data, isLoading } = useBanners();
   const { theme } = useTheme()
   const isDark = theme === 'dark'
-  if (!data || data.length === 0) return null
+  const { t } = useTranslation();
 
   return (
     <View className='px-3 '>
@@ -46,7 +40,7 @@ export default function SlideShow() {
             }}
             activeDotStyle={{
               backgroundColor: colors.light.tint,
-              width: 24,
+              width: 40,
               height: 8,
               borderRadius: 4,
               marginHorizontal: 4,
@@ -56,52 +50,7 @@ export default function SlideShow() {
             }}
           >
             {data?.map((banner: Banner) => (
-              <View key={banner.id} className='px-1'>
-                <View
-                  style={[
-                    styles.bannerContainer,
-                    {
-                      shadowColor: isDark ? '#000' : '#000',
-                      shadowOpacity: isDark ? 0.5 : 0.15,
-                    }
-                  ]}
-                >
-                  <Image
-                    source={{ uri: banner.image }}
-                    className='w-full h-full rounded-2xl'
-                    resizeMode='cover'
-                  />
-
-                  {/* Gradient overlay for better text readability */}
-                  <LinearGradient
-                    colors={[
-                      'transparent',
-                      'rgba(0,0,0,0.3)',
-                      'rgba(0,0,0,0.7)',
-                    ]}
-                    style={styles.gradientOverlay}
-                    className='rounded-2xl'
-                  />
-
-                  {/* Content container */}
-                  <View className='absolute bottom-0 left-0 right-0 p-5'>
-                    <Text
-                      className='text-white font-bold text-3xl mb-2'
-                      style={styles.title}
-                      numberOfLines={2}
-                    >
-                      {banner.title}
-                    </Text>
-                    <Text
-                      className='text-white text-base opacity-90'
-                      style={styles.content}
-                      numberOfLines={2}
-                    >
-                      {banner.content}
-                    </Text>
-                  </View>
-                </View>
-              </View>
+              <BannerItem banner={banner} isDark={isDark} t={t} />
             ))}
           </Swiper>
         </View>
@@ -110,36 +59,4 @@ export default function SlideShow() {
   )
 }
 
-const styles = StyleSheet.create({
-  bannerContainer: {
-    height: 200,
-    borderRadius: 16,
-    overflow: 'hidden',
-    position: 'relative',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowRadius: 8,
-    elevation: 6,
-  },
-  gradientOverlay: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: '70%',
-  },
-  title: {
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 4,
-    lineHeight: 36,
-  },
-  content: {
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 3,
-    lineHeight: 22,
-  },
-});
+
