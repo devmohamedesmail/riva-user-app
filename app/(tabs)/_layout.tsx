@@ -120,6 +120,11 @@ export default function Layout() {
                 options={{ href: null }}
             />
 
+            <Tabs.Screen
+                name="stores/product-details/index"
+                options={{ href: null }}
+            />
+
         </Tabs>
     )
 }

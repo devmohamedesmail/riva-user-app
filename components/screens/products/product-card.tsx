@@ -6,6 +6,7 @@ import AddCartModal from "@/components/ui/add-cart-modal";
 import { useAddToCart } from "@/hooks/useAddToCart";
 import Text from "@/components/ui/text";
 import { Product } from "@/@types/stores";
+import { useRouter } from "expo-router";
 
 
 
@@ -15,6 +16,7 @@ export default function ProductCard({ item, store }: { item: Product; store: any
   const { t } = useTranslation();
   const { handleAddToCart, getCartQuantity } = useAddToCart();
   const [isModalVisible, setModalVisible] = useState(false);
+  const router = useRouter()
   const [selectedAttribute, setSelectedAttribute] = useState<{
     name: string;
     value: string;
@@ -63,7 +65,10 @@ export default function ProductCard({ item, store }: { item: Product; store: any
   return (
     <View className="w-1/2 mb-5 bg-white dark:bg-card-dark rounded-lg overflow-hidden relative">
       {/* product Image */}
-      <View className="relative">
+      <Pressable onPress={() => router.push({ 
+        pathname: "/stores/product-details", 
+        params: { item : JSON.stringify(item) } })} 
+        className="relative">
         {item.image ? (
           <Image
             source={{ uri: item.image }}
@@ -86,7 +91,7 @@ export default function ProductCard({ item, store }: { item: Product; store: any
             </Text>
           </View>
         )}
-      </View>
+      </Pressable>
 
 
 
