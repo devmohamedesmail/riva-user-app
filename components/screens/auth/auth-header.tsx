@@ -3,9 +3,8 @@ import Logo from '@/components/ui/logo';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Animated, Dimensions, Text, View } from 'react-native';
-
-const { width } = Dimensions.get('window');
+import { Animated , View } from 'react-native';
+import Text from '@/components/ui/text';    
 
 export default function AuthHeader({ title, description }: { title?: string, description?: string }) {
     const { i18n } = useTranslation();
@@ -73,7 +72,7 @@ export default function AuthHeader({ title, description }: { title?: string, des
                         }}
                         className="items-center"
                     >
-                        <Text className="text-3xl font-bold text-white mb-3 tracking-wide">
+                        <Text className="text-3xl cairoBold text-white mb-3 tracking-wide">
                             {title}
                         </Text>
                         <Text

@@ -127,7 +127,9 @@
     "email": "E-mail",
     "featureComingSoon": "Coming Soon",
     "featureComingSoonDesc": "This feature is currently under development and will be available soon.",
-    "ok": "OK"
+    "ok": "OK",
+    "referralCode": "Referral Code (Optional)",
+    "enterReferralCode": "Enter Referral Code"
   },
   "home": {
     "restaurants": "Restaurants",

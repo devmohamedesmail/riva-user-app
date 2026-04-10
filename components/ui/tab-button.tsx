@@ -1,6 +1,7 @@
 import colors from '@/constants/colors'
 import React from 'react'
-import { Pressable, Text } from 'react-native'
+import { Pressable } from 'react-native'
+import Text from '@/components/ui/text'
 
 interface TabButtonProps {
   title: string
@@ -26,7 +27,7 @@ export default function TabButton({
       }}
     >
       <Text
-        className="font-bold"
+        className="cairoBold"
         style={{
           color: isActive ? '#fff' : colors.light.text,
         }}

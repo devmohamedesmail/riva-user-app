@@ -1,17 +1,11 @@
 import AuthLayout from '@/components/screens/auth/auth-layout'
+import RegisterForm from '@/components/screens/auth/register-form'
 import SocialSection from '@/components/screens/auth/social-section'
-import Button from '@/components/ui/button'
-import Input from '@/components/ui/input'
 import Layout from '@/components/ui/layout'
 import TabButton from '@/components/ui/tab-button'
-import { AuthContext } from '@/context/auth-provider'
-import { useRouter } from 'expo-router'
-import { useFormik } from 'formik'
-import React, { useContext, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import useRegister from '@/hooks/auth/useRegister'
+import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
-import Toast from 'react-native-toast-message'
-import * as Yup from 'yup'
 
 interface RegisterFormValues {
     name: string
@@ -22,85 +16,7 @@ interface RegisterFormValues {
 }
 
 export default function Register() {
-    const { t, i18n } = useTranslation()
-    const [isLoading, setIsLoading] = useState(false)
-    const [registerMethod, setRegisterMethod] = useState<"email" | "phone">("email")
-    const { handle_register } = useContext(AuthContext)
-    const router = useRouter()
-
-
-
-    const validationSchema = Yup.object({
-        name: Yup.string()
-            .min(2, t('auth.name_min_required'))
-            .required(t('auth.name_required')),
-        email: registerMethod === "email"
-            ? Yup.string()
-                .email(t('auth.email_invalid'))
-                .required(t('auth.email_required'))
-            : Yup.string(),
-        phone: registerMethod === "phone"
-            ? Yup.string()
-                .matches(/^[0-9]{10,15}$/, t('auth.phone_invalid'))
-                .required(t('auth.phone_required'))
-            : Yup.string(),
-        password: Yup.string()
-            .min(6, t('auth.password_min'))
-            .required(t('auth.password_required')),
-    })
-
-    const formik = useFormik<RegisterFormValues>({
-        initialValues: {
-            name: '',
-            email: '',
-            phone: '',
-            password: '',
-            role_id: '1'
-        },
-        validationSchema,
-        onSubmit: async (values) => {
-            setIsLoading(true)
-
-            try {
-                const email = registerMethod === "email" ? values.email : null;
-                const phone = registerMethod === "phone" ? values.phone : null;
-
-                const result = await handle_register(values.name, email, phone, values.password, values.role_id);
-                if (result.success) {
-                    Toast.show({
-                        type: 'success',
-                        text1: t('auth.registration_success'),
-                        text2: t('auth.thankYou'),
-                        position: 'top',
-                        visibilityTime: 3000,
-                    });
-                    setTimeout(() => {
-                        setIsLoading(false)
-                        router.push('/')
-                    }, 3000);
-                } else {
-                    Toast.show({
-                        type: 'error',
-                        text1: t('auth.registration_failed'),
-                        text2: t('auth.pleaseTryAgain'),
-                        position: 'top',
-                        visibilityTime: 3000,
-                    });
-                }
-            } catch (error) {
-                Toast.show({
-                    type: 'error',
-                    text1: t('auth.registration_failed'),
-                    text2: t('auth.pleaseTryAgain'),
-                    position: 'top',
-                    visibilityTime: 3000,
-                });
-            } finally {
-                setIsLoading(false)
-            }
-        }
-    })
-
+    const { formik, isLoading, registerMethod, setRegisterMethod, t, router } = useRegister()
     return (
         <Layout>
             <AuthLayout>
@@ -123,63 +39,12 @@ export default function Register() {
                             onPress={() => setRegisterMethod("phone")}
                         />
                     </View>
-
-                    {/* Name Input */}
-                    <Input
-                        label={t('auth.name')}
-                        placeholder={t('auth.enterName')}
-                        type="text"
-                        value={formik.values.name}
-                        onChangeText={formik.handleChange('name')}
-                        error={formik.touched.name && formik.errors.name ? formik.errors.name : undefined}
+                    <RegisterForm
+                        formik={formik}
+                        registerMethod={registerMethod}
+                        setRegisterMethod={setRegisterMethod}
+                        isLoading={isLoading}
                     />
-
-                    {/* Email/Phone Input */}
-                    {registerMethod === "email" ? (
-                        <Input
-                            label={t('auth.email')}
-                            placeholder={t('auth.enterEmail')}
-                            type="email"
-                            keyboardType="email-address"
-                            value={formik.values.email}
-                            onChangeText={formik.handleChange('email')}
-                            error={formik.touched.email && formik.errors.email ? formik.errors.email : undefined}
-                        />
-                    ) : (
-                        <Input
-                            label={t('auth.phone')}
-                            placeholder={t('auth.enterPhone')}
-                            type="phone"
-                            keyboardType="phone-pad"
-                            value={formik.values.phone}
-                            onChangeText={formik.handleChange('phone')}
-                            error={formik.touched.phone && formik.errors.phone ? formik.errors.phone : undefined}
-                        />
-                    )}
-
-                    {/* Password Input */}
-                    <Input
-                        label={t('auth.password')}
-                        placeholder={t('auth.enterPassword')}
-                        type="password"
-                        value={formik.values.password}
-                        onChangeText={formik.handleChange('password')}
-                        error={formik.touched.password && formik.errors.password ? formik.errors.password : undefined}
-                    />
-
-                    <Button
-                        size='lg'
-                        title={isLoading ? t('auth.signingUp') : t('auth.signUp')}
-                        onPress={() => formik.handleSubmit()}
-                        disabled={
-                            isLoading ||
-                            !formik.isValid ||
-                            !formik.dirty ||
-                            (registerMethod === "email" ? !formik.values.email : !formik.values.phone) ||
-                            !formik.values.password
-                        }
-                    />
-
                     <SocialSection />
 
                     {/* Terms and Sign In Link */}

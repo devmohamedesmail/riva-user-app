@@ -127,7 +127,9 @@
     "email": " الايميل ",
     "featureComingSoon": "قريباً",
     "featureComingSoonDesc": "هذه الميزة قيد التطوير حالياً وستكون متاحة قريباً.",
-    "ok": "حسناً"
+    "ok": "حسناً",
+    "referralCode": "رمز الإحالة (اختياري)",
+    "enterReferralCode": "أدخل رمز الإحالة"
   },
   "home": {
     "restaurants": "المطاعم",

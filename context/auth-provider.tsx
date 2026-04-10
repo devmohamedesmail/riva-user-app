@@ -53,13 +53,16 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     // handle register user
-    const handle_register = async (name: string, email: string | null, phone: string | null, password: string, role_id: string) => {
+    const handle_register = async (name: string, email: string | null, phone: string | null, password: string, role_id: string , referred_by_code?: string) => {
         try {
             const registerData: any = { name, password, role_id };
             if (email) {
                 registerData.email = email;
             } else if (phone) {
                 registerData.phone = phone;
+            }
+            if (referred_by_code) {
+                registerData.referred_by_code = referred_by_code;
             }
             const response = await axios.post(`${config.URL}/auth/register`, registerData);
             const user = response.data;
