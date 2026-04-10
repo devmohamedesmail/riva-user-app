@@ -6,13 +6,15 @@ import { usePlace } from '@/hooks/usePlace'
 import SlideShow from '@/components/screens/home/side-show'
 import StoreTypesSection from '@/components/screens/home/store-types-section';
 import HomeHeader from '@/components/screens/home/home-header';
-import { ScrollView, Text } from 'react-native'
+import { ScrollView } from 'react-native'
 import HomeSearch from '@/components/screens/home/home-search';
 import FeaturedStores from '@/components/screens/home/featured-stores';
 import { RefreshControl } from 'react-native-gesture-handler';
 import { queryClient } from '@/providers';
 import PlacesBottomPaper from '@/components/screens/home/places-bottom-paper';
 import SupportFloatBtn from '@/components/ui/support-float-btn';
+
+
 
 export default function Home() {
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -39,6 +41,11 @@ export default function Home() {
     })
     setRefreshing(false)
   }, []);
+
+
+
+ 
+  
   return (
     <>
       <Layout>

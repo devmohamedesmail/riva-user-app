@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, Pressable } from 'react-native'
+import { View, Image, Pressable, Linking } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import Text from '@/components/ui/text'
 import Button from '@/components/ui/button'
@@ -41,7 +41,8 @@ export default function BannerItem({ banner, isDark, t }: { banner: any, isDark:
                     <Text className='text-white text-2xl'> {banner.title}</Text>
                     <Text className='text-white text-md text-base opacity-90'> {banner.content}</Text>
                     <Button
-                        onPress={() => { router.push('/order-track') }}
+                        // onPress={() => { router.push('/order-track') }}
+                        onPress={() => { Linking.openURL(banner.link) }}
                         className='mt-2 w-44'
                         title={t('common.more')} size='sm'
                         // variant='outline'

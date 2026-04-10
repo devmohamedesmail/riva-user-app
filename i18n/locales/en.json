@@ -618,5 +618,10 @@
     "enterStreet": "Enter your street address",
     "enterPhone": "Enter phone number",
     "validationError": "Please fill all required fields"
+  },
+  "update": {
+    "title": "Update Available!",
+    "description": "We have launched a new version of the app with additional features and improvements. Please update to continue.",
+    "button": "Update Now"
   }
 }

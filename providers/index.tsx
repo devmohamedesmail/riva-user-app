@@ -8,6 +8,7 @@ import React from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import Toast from 'react-native-toast-message';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { UpdateProvider } from '@/context/update-provider';
 
 
 export const queryClient = new QueryClient();
@@ -21,10 +22,12 @@ export default function AppProviders({ children }: { children: React.ReactNode }
                     <PlaceProvider>
                         <SettingProvider>
                             <ReduxProvider>
+                                <UpdateProvider>
                                 <NetworkProvider>
                                     {children}
                                     <Toast />
                                 </NetworkProvider>
+                                </UpdateProvider>
                             </ReduxProvider>
                         </SettingProvider>
                     </PlaceProvider>

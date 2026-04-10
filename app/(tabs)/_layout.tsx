@@ -133,6 +133,12 @@ export default function Layout() {
                 options={{ href: null }}
             />
 
+            <Tabs.Screen
+                name="stores"
+                options={{ href: null }}
+            />
+
+
         </Tabs>
     )
 }
