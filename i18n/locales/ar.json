@@ -68,7 +68,8 @@
     "search_error": " خطأ في البحث ",
     "search_error_description": " يرجى المحاولة مرة أخرى ",
     "sale": " عرض ",
-    "more": " عرض المزيد "
+    "more": " عرض المزيد ",
+    "orderNow": " اطلب الآن "
   },
   "auth": {
     "welcomeBack": "مرحباً بعودتك!",

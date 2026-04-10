@@ -1,9 +1,10 @@
 import React from 'react'
 import BottomPaper from '@/components/ui/bottom-paper';
 import { Ionicons } from '@expo/vector-icons'
-import {View,Text, Pressable,ScrollView} from 'react-native'
+import {View,Pressable,ScrollView} from 'react-native'
 import { useTranslation } from 'react-i18next';
 import { usePlace } from '@/hooks/usePlace';
+import Text from '@/components/ui/text';
 export default function PlacesBottomPaper({bottomSheetRef}:any) {
     const {t}=useTranslation()
     const { places, selectedPlace, setSelectedPlace } = usePlace()
@@ -37,7 +38,7 @@ export default function PlacesBottomPaper({bottomSheetRef}:any) {
                     />
                   </View>
                   <View className="flex-1">
-                    <Text className={`text-base font-bold mb-0.5 text-left ${selectedPlace?.id === place.id ? "text-[#fd4a12]" : "text-gray-800"
+                    <Text className={`text-base cairoBold mb-0.5 text-left ${selectedPlace?.id === place.id ? "text-[#fd4a12]" : "text-gray-800"
                       }`}>
                       {place.name}
                     </Text>

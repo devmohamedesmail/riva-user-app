@@ -44,7 +44,7 @@ export default function BannerItem({ banner, isDark, t }: { banner: any, isDark:
                         // onPress={() => { router.push('/order-track') }}
                         onPress={() => { Linking.openURL(banner.link) }}
                         className='mt-2 w-44'
-                        title={t('common.more')} size='sm'
+                        title={t('common.orderNow')} size='sm'
                         // variant='outline'
                     />
                 </View>

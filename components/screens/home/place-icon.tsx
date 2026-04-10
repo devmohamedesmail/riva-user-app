@@ -1,11 +1,12 @@
 import React, { useRef } from 'react'
-import { View, TouchableOpacity, Text, ScrollView } from 'react-native'
+import { View, TouchableOpacity, ScrollView, Pressable } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import RBSheet from 'react-native-raw-bottom-sheet'
 import { useTranslation } from 'react-i18next'
 import BottomSheet from '@gorhom/bottom-sheet';
 import { usePlace } from '@/hooks/usePlace'
 import BottomPaper from '@/components/ui/bottom-paper'
+import Text from '@/components/ui/text'
 
 
 export default function PlaceIcon({ onOpen }: { onOpen: () => void }) {
@@ -16,17 +17,17 @@ export default function PlaceIcon({ onOpen }: { onOpen: () => void }) {
   return (
     <View>
 
-      <TouchableOpacity
+      <Pressable
         // onPress={() => refRBSheet.current.open()}
         onPress={onOpen}
         className="flex-row items-center bg-white  px-4 py-2 rounded-full self-start border border-white/30"
       >
         <Ionicons name="location" size={18} color="black" style={{ marginRight: 6 }} />
-        <Text className="text-black font-bold arabic-font mr-2 text-md" numberOfLines={1}>
+        <Text className="text-black  mr-2 text-sm" numberOfLines={1}>
           {selectedPlace ? selectedPlace.name : t("common.select_place")}
         </Text>
         <Ionicons name="chevron-down" size={16} color="black" />
-      </TouchableOpacity>
+      </Pressable>
 
 
       <BottomPaper ref={bottomSheetRef} snapPoints={['40%', '80%']}>

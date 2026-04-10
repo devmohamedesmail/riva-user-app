@@ -11,7 +11,7 @@ import { Poppins_400Regular, Poppins_600SemiBold } from "@expo-google-fonts/popp
 
 
 export default function RootLayout() {
-    const [showSplash, setShowSplash] = useState(true)
+    // const [showSplash, setShowSplash] = useState(true)
     const [fontsLoaded] = useFonts({
         Cairo_400Regular,
         Cairo_700Bold,
@@ -21,25 +21,25 @@ export default function RootLayout() {
 
     //   if (!fontsLoaded) return null
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowSplash(false)
-        }, 3000) // 1 second
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setShowSplash(false)
+    //     }, 3000) // 1 second
 
-        return () => clearTimeout(timer)
-    }, [])
+    //     return () => clearTimeout(timer)
+    // }, [])
 
     // if (showSplash) {
     //     return <Splash />
     // }
 
-    if (!fontsLoaded || showSplash) {
-        return <Splash />
+    if (!fontsLoaded) {
+        return null
     }
     return (
         <AppProviders>
             <Stack screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="(tabs)/index" />
+                {/* <Stack.Screen name="(tabs)/index" /> */}
             </Stack>
             {/* <IntroModal /> */}
         </AppProviders>

@@ -10,7 +10,7 @@ import useFeaturedStores from '@/hooks/stores/useFeaturedStores'
 export default function FeaturedStores() {
     const { t } = useTranslation()
     const router = useRouter()
-    const { data, isLoading, error } = useFeaturedStores()
+    const { data, isLoading } = useFeaturedStores()
    
 
   
@@ -39,7 +39,7 @@ export default function FeaturedStores() {
                 contentContainerStyle={{ paddingHorizontal: 16 }}
                 className="flex-row"
             >
-                {data?.map((store: Store, index: number) => (<FeaturedStoreCard store={store} className="w-[280px] mr-4" />))}
+                {data?.map((store: Store, index: number) => (<FeaturedStoreCard key={store.id} store={store} className="w-[280px] mr-4" />))}
             </ScrollView>
         </View>
     )

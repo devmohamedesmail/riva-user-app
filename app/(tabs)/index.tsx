@@ -13,6 +13,7 @@ import { RefreshControl } from 'react-native-gesture-handler';
 import { queryClient } from '@/providers';
 import PlacesBottomPaper from '@/components/screens/home/places-bottom-paper';
 import SupportFloatBtn from '@/components/ui/support-float-btn';
+import ResetPlaceButton from '@/components/ui/reset-place';
 
 
 
@@ -22,7 +23,7 @@ export default function Home() {
   const [refreshing, setRefreshing] = React.useState(false);
 
   useEffect(() => {
-    if (!selectedPlace) {
+    if (!selectedPlace || selectedPlace === null) {
       const timer = setTimeout(() => {
         bottomSheetRef.current?.expand()
 
@@ -33,19 +34,42 @@ export default function Home() {
   }, [selectedPlace])
 
 
-  const onRefresh = React.useCallback(async () => {
-    setRefreshing(true);
+  // const onRefresh = React.useCallback(async () => {
+  //   setRefreshing(true);
 
-    await queryClient.invalidateQueries({
-      queryKey: ['store-types', 'banners']
-    })
-    setRefreshing(false)
-  }, []);
+  //   await queryClient.invalidateQueries({
+  //     queryKey: ['store-types', selectedPlace?.id]
+  //   })
+  //   await queryClient.invalidateQueries({
+  //     queryKey: ['banners', selectedPlace?.id]
+  //   })
+  //   await queryClient.invalidateQueries({
+  //     queryKey: ['featured-stores', selectedPlace?.id]
+  //   })
+    
+  //   setRefreshing(false)
+  // }, [selectedPlace?.id]);
+
+const onRefresh = React.useCallback(async () => {
+  setRefreshing(true)
+
+  await queryClient.invalidateQueries({
+    predicate: (query) => {
+      const key = query.queryKey
+
+      return (
+        (key[0] === 'store-types' && key[1] === selectedPlace?.id) ||
+        (key[0] === 'featured-stores' && key[1] === selectedPlace?.id) ||
+        key[0] === 'banners'
+      )
+    },
+  })
+
+  setRefreshing(false)
+}, [selectedPlace?.id])
 
 
 
- 
-  
   return (
     <>
       <Layout>
@@ -53,7 +77,7 @@ export default function Home() {
         <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />} >
           <HomeSearch />
           <SlideShow />
-       
+          {/* <ResetPlaceButton /> */}
           <StoreTypesSection />
           <FeaturedStores />
         </ScrollView>
