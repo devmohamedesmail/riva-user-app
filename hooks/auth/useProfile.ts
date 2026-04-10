@@ -8,14 +8,17 @@ export default function useProfile() {
         queryKey: ["profile"],
         queryFn: async () => {
             const token = await SecureStore.getItemAsync('token');
-            if (!token) return null;
+            console.log("token",token)
+            // if (!token) return null;
             const response = await axios.get(`${config.URL}/auth/get-profile`, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
             });
+        
             return response.data;
-        }
+        },
+        enabled: true,
     });
     return { data, isLoading, error, refetch };
 }

@@ -18,8 +18,10 @@ import { ScrollView, View } from 'react-native'
 export default function AccountScreen() {
   const { t } = useTranslation();
   const { user } = useAuth();
-  const { data } = useProfile();
+  const { data , isLoading, error,refetch} = useProfile();
   const userData = data?.data || user;
+ 
+  
   return (
     <Layout>
       <Header title={t("account.title")} />

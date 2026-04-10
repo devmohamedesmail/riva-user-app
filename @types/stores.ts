@@ -32,9 +32,32 @@ export interface Product {
   category_id: number;
   attributes?: Attribute[];
   product_type: string;
+  is_available: boolean;
+  store_id: number;
+  store?: any;
+  is_featured: boolean;
+  is_active: boolean;
+  category: {
+    id: number;
+    name: string;
+    description: string;
+  };
+}
+
+// export interface Attribute {
+//   name: string;
+//   values: { value: string; price: number }[];
+// }
+
+
+export interface AttributeValue {
+    id?: number
+    value: string
+    price: number
 }
 
 export interface Attribute {
-  name: string;
-  values: { value: string; price: number }[];
+    id: number
+    name: string
+    values: AttributeValue[]
 }

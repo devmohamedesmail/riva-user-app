@@ -1,7 +1,8 @@
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
-import { Text, View, Share, Pressable } from 'react-native'
+import { View, Share, Pressable } from 'react-native'
 import { useTranslation } from 'react-i18next'
+import Text from '@/components/ui/text';
 export default function ProfileReferralCode({ userData }: { userData: any }) {
     const { t } = useTranslation();
     return (
@@ -34,6 +35,7 @@ export default function ProfileReferralCode({ userData }: { userData: any }) {
                         <Ionicons name="copy-outline" size={18} color="#6b7280" />
                     </View>
                 </Pressable>
+                
             )}
         </>
     )

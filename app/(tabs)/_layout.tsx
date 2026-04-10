@@ -8,17 +8,25 @@ import { useTranslation } from 'react-i18next';
 export default function Layout() {
     const totalItems = useAppSelector(selectCartTotalItems);
     const { colorScheme } = useColorScheme();
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     return (
         <Tabs
             screenOptions={{
                 headerShown: false,
                 tabBarActiveTintColor: colors.light.tint, // active tab color
                 tabBarInactiveTintColor: 'gray',
+              
                 tabBarStyle: {
                     backgroundColor: colorScheme === 'dark' ? colors.dark.background : colors.light.background,
-
+                    height: 70,
+                    paddingBottom: 10,
+                    paddingTop: 10,
                 },
+                tabBarLabelStyle: {
+                    fontFamily: i18n.language === 'ar' ? 'Cairo_400Regular' : 'Poppins_400Regular',
+                    fontSize: 9,
+                },
+
             }}>
 
 

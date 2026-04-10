@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StatusBar } from 'react-native';
+import { View, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useColorScheme } from 'nativewind';
 import { useRouter } from 'expo-router';
+import Text from '@/components/ui/text';
 
 interface HeaderProps {
   title: string;
@@ -27,28 +28,28 @@ export default function Header({
       
       {/* Header Container */}
       <View
-        className="bg-white dark:bg-gray-800 pt-10 pb-4 shadow-lg dark:shadow-gray-800" >
+        className="bg-primary dark:bg-gray-800 pt-10 pb-4 shadow-lg dark:shadow-gray-800" >
         <View className="flex-row items-center justify-between px-4">
           {/* Left Section - Back Button */}
           <View className="flex-row items-center flex-1">
             {showBackButton && (
-              <TouchableOpacity
+              <Pressable
                 onPress={()=>router.back()}
                 className="mr-3 p-2"
-                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                // hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
               >
                 <Ionicons 
                   name="arrow-back" 
                   size={24} 
-                  color={colorScheme === "dark" ? "#fff" : "#000"}
+                  color={colorScheme === "dark" ? "#fff" : "#fff"}
                 />
-              </TouchableOpacity>
+              </Pressable>
             )}
 
             {/* Title Section */}
             <View className="flex-1">
               <Text
-                className="text-xl text-black dark:text-white arabic-font"
+                className="text-lg  text-white dark:text-white"
                 numberOfLines={1}
               >
                 {title}

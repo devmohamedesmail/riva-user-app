@@ -1,8 +1,9 @@
 import React from 'react'
-import { Text, View } from 'react-native';
+import {  View } from 'react-native';
 import Modal from 'react-native-modal';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
+import  Text  from '@/components/ui/text';
 export default function NoWifi({ isConnected }: { isConnected: boolean }) {
     const { t } = useTranslation();
     return (
@@ -22,12 +23,12 @@ export default function NoWifi({ isConnected }: { isConnected: boolean }) {
                     </View>
 
                     {/* Title */}
-                    <Text className="text-2xl font-bold text-gray-900 dark:text-white mb-3 text-center">
+                    <Text className="text-2xl cairoBold text-black dark:text-white mb-3 text-center">
                         {t('network.title')}
                     </Text>
 
                     {/* Message */}
-                    <Text className="text-base text-gray-600 dark:text-gray-300 text-center leading-6">
+                    <Text className="text-base cairoRegular text-black dark:text-gray-300 text-center leading-6">
                         {t('network.message')}
                     </Text>
                 </View>

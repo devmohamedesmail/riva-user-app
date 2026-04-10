@@ -1,8 +1,8 @@
-import { useTheme } from '@/hooks/useTheme';
 import React from 'react'
-import { Switch, TouchableOpacity, View, Text } from 'react-native'
+import { Pressable, Switch, View } from 'react-native'
 import { Ionicons } from "@expo/vector-icons";
 import { useColorScheme } from 'nativewind';
+import Text from '@/components/ui/text';
 
 interface SettingItemProps {
     onPress?: () => void;
@@ -16,9 +16,8 @@ export default function OptionButton({ onPress, icon, type, title, value, onValu
    const { colorScheme } = useColorScheme()
 
     return (
-        <TouchableOpacity
+        <Pressable
             onPress={type === "navigation" ? onPress : undefined}
-            activeOpacity={type === "navigation" ? 0.7 : 1}
             className="mx-4 mb-2 p-4 rounded-xl flex-row-reverse items-center justify-between dark:bg-card-dark bg-card"
 
         >
@@ -30,7 +29,7 @@ export default function OptionButton({ onPress, icon, type, title, value, onValu
                     {icon}
                 </View>
                 <Text
-                    className="font-extrabold arabic-font text-base text-right flex-1 text-text dark:text-white"
+                    className="cairoBold arabic-font text-base text-right flex-1 text-text dark:text-white"
 
                 >
                     {title}
@@ -49,6 +48,6 @@ export default function OptionButton({ onPress, icon, type, title, value, onValu
                 color={colorScheme === 'dark' ? '#fff' : '#000'}
                 />
             )}
-        </TouchableOpacity>
+        </Pressable>
     )
 }

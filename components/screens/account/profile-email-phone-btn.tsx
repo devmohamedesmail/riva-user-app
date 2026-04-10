@@ -1,5 +1,6 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
+import Text from '@/components/ui/text';
 export default function ProfileEmailPhoneBtn({ icon, title, value }: { icon: React.ReactNode, title: string, value: string }) {
     return (
         <View className="flex-row items-center bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">

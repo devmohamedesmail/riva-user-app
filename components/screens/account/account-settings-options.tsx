@@ -8,6 +8,7 @@ import { MaterialIcons, Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 import { useSwitchLanguage } from '@/hooks/useSwitchLanguage'
 
+
 export default function AccountSettingsOptions() {
     const { t } = useTranslation();
     const { colorScheme, toggleColorScheme } = useColorScheme()

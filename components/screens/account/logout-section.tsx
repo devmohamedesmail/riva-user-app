@@ -1,10 +1,9 @@
-import colors from '@/constants/colors'
 import { useAuth } from '@/hooks/useAuth'
 import { Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Pressable, Text, TouchableOpacity, View } from 'react-native'
+import { Pressable, TouchableOpacity, View } from 'react-native'
 import Modal from 'react-native-modal'
 import Input from '@/components/ui/input'
 import { useFormik } from 'formik'
@@ -12,6 +11,7 @@ import * as Yup from 'yup'
 import axios from 'axios'
 import { config } from '@/constants/config'
 import Toast from 'react-native-toast-message'
+import Text from '@/components/ui/text'
 
 export default function LogoutSection() {
     const { t } = useTranslation()

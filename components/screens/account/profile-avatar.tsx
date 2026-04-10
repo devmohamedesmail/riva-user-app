@@ -1,9 +1,10 @@
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons'
-import { Pressable, Text, View } from 'react-native'
+import { Pressable, View } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import Entypo from '@expo/vector-icons/Entypo';
 import { useRouter } from 'expo-router';
+import Text from '@/components/ui/text';
 export default function ProfileAvatar({ userData }: { userData: any }) {
     const { t } = useTranslation();
     const router = useRouter();
@@ -17,7 +18,7 @@ export default function ProfileAvatar({ userData }: { userData: any }) {
                 />
             </View>
             <View className="flex-row items-center gap-2">
-                <Text className="text-xl font-bold text-gray-900 dark:text-white">
+                <Text className="text-xl cairoBold text-gray-900 dark:text-white">
                     {userData?.name}
                 </Text>
                 <Pressable onPress={() => router.push("/account/edit-profile")}>

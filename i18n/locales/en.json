@@ -244,7 +244,9 @@
     "tryDifferentKeywords": "Try different keywords",
     "checkBackLater": "Check back later for great stores!",
     "reviews": "reviews",
-    "total":"Total Products"
+    "total":"Total Products",
+    "orderViaWhatsapp": "Order via WhatsApp",
+    "whatsappOrderNote": "You can order via WhatsApp until stores become available in the app"
   },
   "account": {
     "title": "Account",
