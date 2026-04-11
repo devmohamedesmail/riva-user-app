@@ -69,7 +69,8 @@
     "search_error_description": " يرجى المحاولة مرة أخرى ",
     "sale": " عرض ",
     "more": " عرض المزيد ",
-    "orderNow": " اطلب الآن "
+    "orderNow": " اطلب الآن ",
+    "off": " خصم "
   },
   "auth": {
     "welcomeBack": "مرحباً بعودتك!",

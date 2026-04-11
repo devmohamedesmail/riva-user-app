@@ -69,7 +69,8 @@
     "search_error_description": "Please try again",
     "sale": "Sale",
     "more": "See More",
-    "orderNow": "Order Now"
+    "orderNow": "Order Now",
+    "off": "Off"
   },
   "auth": {
     "welcomeBack": "Welcome back!",

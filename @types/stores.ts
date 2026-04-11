@@ -34,9 +34,15 @@ export interface Product {
   product_type: string;
   is_available: boolean;
   store_id: number;
-  store?: any;
+ 
   is_featured: boolean;
   is_active: boolean;
+  store: {
+        id: number
+        name: string
+        logo: string
+        rating: number
+    }
   category: {
     id: number;
     name: string;

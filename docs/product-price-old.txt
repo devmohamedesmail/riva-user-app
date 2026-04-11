@@ -1,0 +1,49 @@
+<View className="flex-row justify-center items-center mt-1">
+
+
+
+          {item.product_type === "simple" ? (
+            <>
+              {item.on_sale && item.sale_price ? (
+                <>
+                  <Text className="text-primary font-cairo text-md">
+                    {item.sale_price} {t("common.currency")}
+                  </Text>
+                  <Text className="text-gray-400 line-through font-cairo text-xs ml-2">
+                    {item.price} {t("common.currency")}
+                  </Text>
+                </>
+              ) : (
+                <Text className="text-primary font-cairo text-sm">
+                  {item.price} {t("common.currency")}
+                </Text>
+              )}
+
+
+            </>) : (<Text>
+              <Text className="text-primary font-cairo text-sm">
+                {priceRange?.min} - {priceRange?.max} {t("common.currency")}
+              </Text>
+            </Text>)}
+
+
+
+
+
+
+
+          {/* {item.on_sale && item.sale_price ? (
+            <>
+              <Text className="text-primary font-bold text-md">
+                {item.sale_price} {t("common.currency")}
+              </Text>
+              <Text className="text-gray-400 line-through text-xs ml-2">
+                {item.price} {t("common.currency")}
+              </Text>
+            </>
+          ) : (
+            <Text className="text-primary font-bold text-sm">
+              {item.price} {t("common.currency")}
+            </Text>
+          )} */}
+        </View>

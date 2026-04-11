@@ -60,13 +60,15 @@ export default function OfferCard({ item }: { item: OfferProduct }) {
         return 0;
     };
 
+    const discountPercentage = calculateDiscount();
+
 
     const handleAddButtonPress = () => {
         setModalVisible(true);
     };
 
     const quantity = getCartQuantity(item.id);
-    const discountPercentage = calculateDiscount();
+   
 
     return (
         <View className="flex-1 m-2 bg-white dark:bg-zinc-900 rounded-2xl shadow-sm border border-gray-100 dark:border-zinc-800 overflow-hidden">

@@ -12,43 +12,44 @@ import { useLocalSearchParams } from 'expo-router'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ActivityIndicator, FlatList, Text, View } from 'react-native'
+import { Product,Attribute, AttributeValue } from '@/@types/stores'
 
-interface ProductAttributeValue {
-    id: number
-    value: string
-    price: number
-    attribute_id: number
-    product_id: number
-}
+// interface ProductAttributeValue {
+//     id: number
+//     value: string
+//     price: number
+//     attribute_id: number
+//     product_id: number
+// }
 
-interface ProductAttribute {
-    id: number
-    name: string
-    values: ProductAttributeValue[]
-}
+// interface ProductAttribute {
+//     id: number
+//     name: string
+//     values: AttributeValue[]
+// }
 
-interface Product {
-    id: number
-    name: string
-    image: string
-    description: string | null
-    price: number
-    on_sale: boolean
-    sale_price: number | null
-    store_id: number
-    category_id: number
-    store: {
-        id: number
-        name: string
-        logo: string
-        rating: number
-    }
-    category: {
-        id: number
-        name: string
-    }
-    attributes: ProductAttribute[]
-}
+// interface Product {
+//     id: number
+//     name: string
+//     image: string
+//     description: string | null
+//     price: number
+//     on_sale: boolean
+//     sale_price: number | null
+//     store_id: number
+//     category_id: number
+//     store: {
+//         id: number
+//         name: string
+//         logo: string
+//         rating: number
+//     }
+//     category: {
+//         id: number
+//         name: string
+//     }
+//     attributes: ProductAttribute[]
+// }
 
 interface SearchResponse {
     success: boolean

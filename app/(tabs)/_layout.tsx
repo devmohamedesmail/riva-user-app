@@ -15,7 +15,6 @@ export default function Layout() {
                 headerShown: false,
                 tabBarActiveTintColor: colors.light.tint, // active tab color
                 tabBarInactiveTintColor: 'gray',
-              
                 tabBarStyle: {
                     backgroundColor: colorScheme === 'dark' ? colors.dark.background : colors.light.background,
                     // height: 70,

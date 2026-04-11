@@ -1,0 +1,17 @@
+{hasAttributes && minPrice !== maxPrice ? (
+    <Text className="text-base font-bold text-primary">
+        {minPrice} - {maxPrice} {config.CurrencySymbol}
+    </Text>
+) : (
+    <Text className="text-base font-bold text-primary">
+        {displayPrice} {config.CurrencySymbol}
+    </Text>
+)}
+
+
+
+{hasAttributes && minPrice !== maxPrice && (
+    <Text className="text-xs text-gray-500">
+        {t("common.starts_from") || "يبدأ من"}
+    </Text>
+)}
