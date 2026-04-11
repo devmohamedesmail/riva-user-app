@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 
 import Layout from '@/components/ui/layout'
 import BottomSheet from '@gorhom/bottom-sheet';
-import { usePlace } from '@/hooks/usePlace'
+import { usePlace } from '@/hooks/place/usePlace'
 import SlideShow from '@/components/screens/home/side-show'
 import StoreTypesSection from '@/components/screens/home/store-types-section';
 import HomeHeader from '@/components/screens/home/home-header';

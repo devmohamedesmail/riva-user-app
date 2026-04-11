@@ -2,7 +2,7 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { config } from '@/constants/config'
-import { usePlace } from '../usePlace'
+import { usePlace } from '@/hooks/place/usePlace'
 
 
 export default function useFeaturedStores() {

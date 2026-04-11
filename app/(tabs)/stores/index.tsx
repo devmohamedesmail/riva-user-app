@@ -6,7 +6,7 @@ import { View, FlatList } from 'react-native'
 import NoStores from '@/components/screens/stores/no-stores'
 import StoresHeader from '@/components/screens/stores/stores-header'
 import StoreCard from '@/components/screens/stores/store-card'
-import { useStores } from '@/hooks/useStores'
+import { useStores } from '@/hooks/stores/useStores'
 
 export default function Stores() {
     const { storeType } = useLocalSearchParams();

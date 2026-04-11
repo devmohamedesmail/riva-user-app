@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Pressable, ScrollView, Image } from 'react-native'
-import useFetch from '@/hooks/useFetch'
+import useFetch from '@/hooks/common/useFetch'
 import Text from '@/components/ui/text'
 
 

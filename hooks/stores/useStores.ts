@@ -1,7 +1,7 @@
 import { config } from '@/constants/config'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { usePlace } from './usePlace'
+import { usePlace } from '@/hooks/place/usePlace'
 import { useState,useMemo } from 'react'
 
 export const useStores = (storeTypeId: number) => {

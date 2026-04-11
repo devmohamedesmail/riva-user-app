@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { config } from '@/constants/config';
-import { useAuth } from './useAuth';
+import { useAuth } from '../auth/useAuth';
 
 export const useAddresses = () => {
     const { auth } = useAuth();

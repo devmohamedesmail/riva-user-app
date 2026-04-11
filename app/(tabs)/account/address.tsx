@@ -3,7 +3,7 @@ import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert } from
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { useColorScheme } from 'nativewind';
-import { useAddresses } from '@/hooks/useAddresses';
+import { useAddresses } from '@/hooks/address/useAddresses';
 import Header from '@/components/ui/header';
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';

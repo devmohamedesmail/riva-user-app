@@ -3,7 +3,7 @@ import BottomPaper from '@/components/ui/bottom-paper';
 import { Ionicons } from '@expo/vector-icons'
 import {View,Pressable,ScrollView} from 'react-native'
 import { useTranslation } from 'react-i18next';
-import { usePlace } from '@/hooks/usePlace';
+import { usePlace } from '@/hooks/place/usePlace';
 import Text from '@/components/ui/text';
 export default function PlacesBottomPaper({bottomSheetRef}:any) {
     const {t}=useTranslation()

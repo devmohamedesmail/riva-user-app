@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Image, Pressable } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useTranslation } from "react-i18next";
-import { useAddToCart } from "@/hooks/useAddToCart";
+import { useAddToCart } from "@/hooks/stores/useAddToCart";
 import AddCartModal from "@/components/ui/add-cart-modal";
 
 interface Attribute {

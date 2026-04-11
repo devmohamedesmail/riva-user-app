@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { usePlace } from './usePlace';
+import { usePlace } from '@/hooks/place/usePlace';
 import { config } from '@/constants/config';
 export const useStoreTypes = () => {
     const { selectedPlace } = usePlace()

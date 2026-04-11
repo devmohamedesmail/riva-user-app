@@ -1,0 +1,36 @@
+ const getPriceDisplay = () => {
+        const hasSizes = item.attributes && item.attributes.length > 0 && item.attributes[0].values.length > 0;
+
+        let displayPrice = item.price;
+        let originalPrice = null;
+
+        if (hasSizes) {
+            // Find loading price from sizes if main price is 0 or needs to be calculated
+            // Typically "starting from" logic. Let's use the smallest size price as base if main price is just a placeholder
+            // But usually API gives a base price.
+            // If we want "Starting from", we can check if there are multiple prices.
+        }
+
+        if (item.on_sale && item.sale_price) {
+            displayPrice = item.sale_price;
+            originalPrice = item.price;
+        }
+
+        return (
+            <View className="flex-row items-center flex-wrap">
+                {hasSizes && (
+                    <Text className="text-xs text-gray-500 dark:text-gray-400 mr-1">
+                        {t('common.starts_from') || 'يبدأ من'}
+                    </Text>
+                )}
+                <Text className="text-base font-bold text-primary dark:text-primary-dark">
+                    {displayPrice} {config.CurrencySymbol}
+                </Text>
+                {originalPrice && (
+                    <Text className="text-xs text-gray-400 line-through ml-2">
+                        {originalPrice} {config.CurrencySymbol}
+                    </Text>
+                )}
+            </View>
+        );
+    };

@@ -1,13 +1,9 @@
 import AddCartModal from "@/components/ui/add-cart-modal";
-import { useAddToCart } from "@/hooks/useAddToCart";
-import AntDesign from "@expo/vector-icons/AntDesign";
+import { useAddToCart } from "@/hooks/stores/useAddToCart";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { useColorScheme } from "nativewind";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import Modal from "react-native-modal";
-import Toast from "react-native-toast-message";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 
 interface Attribute {
     id: number;

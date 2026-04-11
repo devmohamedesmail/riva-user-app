@@ -68,7 +68,7 @@ export default function ProductInfo({ product }: { product: any }) {
 
     const priceRange = getPriceRange()
     return (
-        <View className="px-4 pt-5 pb-3">
+        <View className="px-4 pt-5 pb-3 ">
             {/* Category chip */}
             <View className="flex-row mb-3">
                 <View className="bg-primary/10 border border-primary/20 px-3 py-1 rounded-full flex-row items-center gap-1">

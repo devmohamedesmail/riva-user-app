@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import RBSheet from 'react-native-raw-bottom-sheet'
 import { useTranslation } from 'react-i18next'
 import BottomSheet from '@gorhom/bottom-sheet';
-import { usePlace } from '@/hooks/usePlace'
+import { usePlace } from '@/hooks/place/usePlace'
 import BottomPaper from '@/components/ui/bottom-paper'
 import Text from '@/components/ui/text'
 

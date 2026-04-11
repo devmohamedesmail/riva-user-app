@@ -6,7 +6,7 @@ import { useColorScheme } from 'nativewind'
 import colors from '@/constants/colors'
 import { MaterialIcons, Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
-import { useSwitchLanguage } from '@/hooks/useSwitchLanguage'
+import { useSwitchLanguage } from '@/hooks/common/useSwitchLanguage'
 
 
 export default function AccountSettingsOptions() {

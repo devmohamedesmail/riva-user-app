@@ -1,4 +1,4 @@
-import { useSetting } from '@/hooks/useSetting';
+import { useSetting } from '@/hooks/common/useSetting';
 import React from 'react'
 import { Image, View } from 'react-native'
 

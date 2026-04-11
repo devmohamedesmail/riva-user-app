@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import { useTranslation } from 'react-i18next';
 import Skeleton from '@/components/ui/skeleton';
 import StoreTypeItem from './store-type-item';
-import { useStoreTypes } from '@/hooks/useStoreTypes';
+import { useStoreTypes } from '@/hooks/stores/useStoreTypes';
 import Text from '@/components/ui/text';
 
 interface StoreType {

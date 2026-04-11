@@ -4,9 +4,9 @@ import { useRouter } from 'expo-router'
 import { Plus } from 'lucide-react-native'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Image, Pressable,TouchableOpacity, View } from 'react-native'
+import { Image, Pressable, View } from 'react-native'
 import { useColorScheme } from 'nativewind'
-import { useAddToCart } from '@/hooks/useAddToCart'
+import { useAddToCart } from '@/hooks/stores/useAddToCart'
 import AddCartModal from '@/components/ui/add-cart-modal'
 import  Text  from '@/components/ui/text'
 interface Attribute {
@@ -71,14 +71,15 @@ interface Product {
 }
 
 export default function ResultCardItem({ item }: { item: Product }) {
+   
     const { t, i18n } = useTranslation()
     const router = useRouter()
 
     const handleProductPress = (product: Product) => {
-        // router.push({
-        //     pathname: '/(tabs)/stores/[id]',
-        //     params: { id: product.store.id }
-        // })
+        router.push({
+            pathname: '/(tabs)/stores/product-details',
+            params: { item: JSON.stringify(product) }
+        })
     }
 
 
@@ -121,42 +122,50 @@ export default function ResultCardItem({ item }: { item: Product }) {
     const quantity = getCartQuantity(item.id);
     const discountPercentage = calculateDiscount();
 
-    const getPriceDisplay = () => {
-        const hasSizes = item.attributes && item.attributes.length > 0 && item.attributes[0].values.length > 0;
+   const getPriceDisplay = () => {
+    const hasAttributes =
+        item.attributes &&
+        item.attributes.length > 0 &&
+        item.attributes[0].values.length > 0;
 
-        let displayPrice = item.price;
-        let originalPrice = null;
+    let displayPrice = item.price;
+    let originalPrice = null;
 
-        if (hasSizes) {
-            // Find loading price from sizes if main price is 0 or needs to be calculated
-            // Typically "starting from" logic. Let's use the smallest size price as base if main price is just a placeholder
-            // But usually API gives a base price.
-            // If we want "Starting from", we can check if there are multiple prices.
-        }
-
-        if (item.on_sale && item.sale_price) {
-            displayPrice = item.sale_price;
-            originalPrice = item.price;
-        }
-
-        return (
-            <View className="flex-row items-center flex-wrap">
-                {hasSizes && (
-                    <Text className="text-xs text-gray-500 dark:text-gray-400 mr-1">
-                        {t('common.starts_from') || 'يبدأ من'}
-                    </Text>
-                )}
-                <Text className="text-base font-bold text-primary dark:text-primary-dark">
-                    {displayPrice} {config.CurrencySymbol}
-                </Text>
-                {originalPrice && (
-                    <Text className="text-xs text-gray-400 line-through ml-2">
-                        {originalPrice} {config.CurrencySymbol}
-                    </Text>
-                )}
-            </View>
+    if (hasAttributes) {
+        // get all attribute prices
+        const prices = item.attributes.flatMap(attr =>
+            attr.values.map(v => v.price)
         );
-    };
+
+        const minPrice = Math.min(...prices);
+        displayPrice = minPrice;
+    }
+
+    if (item.on_sale && item.sale_price) {
+        displayPrice = item.sale_price;
+        originalPrice = item.price;
+    }
+
+    return (
+        <View className="flex-row items-center flex-wrap">
+            {hasAttributes && (
+                <Text className="text-xs text-gray-500 dark:text-gray-400 mr-1">
+                    {t('common.starts_from') || 'يبدأ من'}
+                </Text>
+            )}
+
+            <Text className="text-base font-bold text-primary dark:text-primary-dark">
+                {displayPrice} {config.CurrencySymbol}
+            </Text>
+
+            {originalPrice && (
+                <Text className="text-xs text-gray-400 line-through ml-2">
+                    {originalPrice} {config.CurrencySymbol}
+                </Text>
+            )}
+        </View>
+    );
+};
 
     return (
         <>

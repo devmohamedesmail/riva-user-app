@@ -3,7 +3,7 @@ import { View, Pressable, Linking } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { useTranslation } from 'react-i18next';
 import Text from '@/components/ui/text'
-import { useSetting } from '@/hooks/useSetting';
+import { useSetting } from '@/hooks/common/useSetting';
 
 
 interface NoStoresProps {

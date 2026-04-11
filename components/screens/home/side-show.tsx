@@ -2,7 +2,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import Swiper from 'react-native-swiper'
-import { useTheme } from '@/hooks/useTheme'
+import { useTheme } from '@/hooks/common/useTheme'
 import colors from '@/constants/colors'
 import Skeleton from '@/components/ui/skeleton'
 import { useBanners } from '@/hooks/banners/useBanners'

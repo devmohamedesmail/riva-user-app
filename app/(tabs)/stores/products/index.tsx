@@ -10,7 +10,7 @@ import ProductCard from '@/components/screens/products/product-card'
 import ProductListCard from '@/components/screens/products/product-list-card'
 import NoProducts from '@/components/screens/products/no-products'
 import { Ionicons } from "@expo/vector-icons"
-import { useStoreProducts } from '@/hooks/useStoreProducts'
+import { useStoreProducts } from '@/hooks/stores/useStoreProducts'
 import Text from '@/components/ui/text'
 
 

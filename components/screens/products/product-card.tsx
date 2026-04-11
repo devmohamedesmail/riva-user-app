@@ -3,7 +3,7 @@ import { View,Image, Pressable } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useTranslation } from "react-i18next";
 import AddCartModal from "@/components/ui/add-cart-modal";
-import { useAddToCart } from "@/hooks/useAddToCart";
+import { useAddToCart } from "@/hooks/stores/useAddToCart";
 import Text from "@/components/ui/text";
 import { Product } from "@/@types/stores";
 import { useRouter } from "expo-router";

@@ -3,14 +3,12 @@ import OfferCard from '@/components/screens/offers/offer-card';
 import OffersHeader from '@/components/screens/offers/offers-header';
 import Loading from '@/components/ui/loading';
 import { config } from '@/constants/config';
-import { usePlace } from '@/hooks/usePlace';
-import { Ionicons } from '@expo/vector-icons';
+import { usePlace } from '@/hooks/place/usePlace';
 import axios from 'axios';
 import { useColorScheme } from 'nativewind';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, FlatList, RefreshControl, Text, View } from 'react-native';
-import { addToCart, clearCart } from "@/store/slices/cartSlice";
+import { FlatList, RefreshControl, View } from 'react-native';
 
 interface Attribute {
     id: number;

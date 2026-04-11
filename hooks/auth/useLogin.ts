@@ -4,9 +4,8 @@ import Toast from "react-native-toast-message";
 import { useRouter } from 'expo-router';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
-import { AuthContext } from '@/context/auth-provider';
 import { useState } from 'react';
-import { useAuth } from '../useAuth';
+import { useAuth } from '@/hooks/auth/useAuth';
 
 export default function useLogin() {
   const { t, i18n } = useTranslation();

@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { config } from '@/constants/config';
 import { useAppSelector } from '@/redux/hooks';
-import { useSetting } from '@/hooks/useSetting';
+import { useSetting } from '@/hooks/common/useSetting';
 import Text from '@/components/ui/text';
 
 export default function CheckoutSummery({selectedArea,storeCount}: {selectedArea: any,storeCount:number}) {

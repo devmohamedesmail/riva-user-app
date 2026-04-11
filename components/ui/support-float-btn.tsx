@@ -10,7 +10,7 @@ import {
     StyleSheet,
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { useSetting } from '@/hooks/useSetting'
+import { useSetting } from '@/hooks/common/useSetting'
 import MainFab from './main-fab'
 import FloatContactButton from './float-contact-button'
 

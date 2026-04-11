@@ -1,5 +1,5 @@
 import { config } from '@/constants/config';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 
