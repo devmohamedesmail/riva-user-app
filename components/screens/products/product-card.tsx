@@ -13,9 +13,11 @@ export default function ProductCard({ item, store }: { item: Product; store: any
       <ProductImage
         item={item}
         store={store}
+        containerClass="w-full"
+        imageClass="w-full h-40"
       />
       <ProductTitle item={item} />
-      <View className="flex flex-row justify-between items-center px-4 pb-2">
+      <View className="flex flex-row justify-between items-center px-4 pb-2 ">
         <ProductPrice item={item} />
         <ProductAction item={item} store={store} />
       </View>

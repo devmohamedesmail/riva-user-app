@@ -34,7 +34,6 @@ export interface Product {
   product_type: string;
   is_available: boolean;
   store_id: number;
- 
   is_featured: boolean;
   is_active: boolean;
   store: {

@@ -6,49 +6,23 @@ import { calculateDiscount } from '@/helper/getPriceDiscount'
 import { useTranslation } from 'react-i18next'
 import Text from '@/components/ui/text'
 
-export default function ProductImage({ item, store }: { item: Product, store: Store }) {
+export default function ProductImage({ item, store, containerClass="w-full",imageClass = "w-full h-40"
+ }: { item: Product, store: Store, containerClass?: string,imageClass?:string }) {
     const router = useRouter()
     const { t } = useTranslation()
     const discountPercentage = calculateDiscount(item.price, item.sale_price, item.on_sale);
     return (
-        // <Pressable onPress={() => router.push({
-        //     pathname: "/stores/product-details",
-        //     params: { item: JSON.stringify(item) }
-        // })}
-        //     className="relative">
-        //     {item.image ? (
-        //         <Image
-        //             source={{ uri: item.image }}
-        //             className="w-full h-40 object-cover"
-        //             resizeMode="cover"
-        //         />
-        //     ) : (
-        //         <View className="bg-gray-200 h-44 items-center justify-center">
-        //             <Text className="text-black dark:text-white text-xl text-center mt-1 font-cairo">
-        //                 {store.name}
-        //             </Text>
-        //         </View>
-        //     )}
-        //     {quantity > 0 && (
-        //         <View className="flex-row mt-2 absolute top-2 right-2 bg-green-600   rounded-full w-8 h-8 flex items-center justify-center">
-        //             <MaterialIcons name="shopping-cart" size={14} color="white" />
-        //             <Text className="text-white font-semibold text-xs">
-        //                 {quantity}
-        //                 {/* {t("cart.inCart")} */}
-        //             </Text>
-        //         </View>
-        //     )}
-        // </Pressable>
+       
         <Pressable onPress={() => router.push({
             pathname: "/stores/product-details",
             params: { item: JSON.stringify(item) }
         })}
-            className="relative">
+            className={`relative ${containerClass}`}>
 
             {item?.image ? (
                 <Image
                     source={{ uri: item.image }}
-                    className="w-full h-40 object-cover"
+                    className={`${imageClass} object-cover`}
                     resizeMode="cover"
                 />
             ) : (

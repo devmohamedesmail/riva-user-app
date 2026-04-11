@@ -10,39 +10,29 @@ export default function ProductPrice({ item }: { item: Product }) {
     const priceRange = getPriceRange(item);
     return (
         <View className="flex-row justify-center items-center mt-1">
-
-
-
             {item.product_type === "simple" ? (
                 <>
                     {item.on_sale && item.sale_price ? (
                         <>
-                            <Text className="text-primary font-cairo text-md">
+                            <Text className="text-primary cairoBold text-md">
                                 {item.sale_price} {t("common.currency")}
                             </Text>
-                            <Text className="text-gray-400 line-through font-cairo text-xs ml-2">
+                            <Text className="text-gray-400 line-through cairoBold text-xs ml-2">
                                 {item.price} {t("common.currency")}
                             </Text>
                         </>
                     ) : (
-                        <Text className="text-primary font-cairo text-sm">
+                        <Text className="text-primary cairoBold text-sm">
                             {item.price} {t("common.currency")}
                         </Text>
                     )}
 
 
                 </>) : (<Text>
-                    <Text className="text-primary font-cairo text-sm">
+                    <Text className="text-primary cairoBold text-sm">
                         {priceRange?.min} - {priceRange?.max} {t("common.currency")}
                     </Text>
                 </Text>)}
-
-
-
-
-
-
-
         </View>
     )
 }
