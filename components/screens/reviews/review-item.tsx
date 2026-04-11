@@ -4,6 +4,8 @@ import { View, Text } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 
 export default function ReviewItem({ review }: any) {
+ 
+    
     const { t, i18n } = useTranslation()
     const isRTL = i18n.language === 'ar';
     const getRatingText = (rating: number) => {
@@ -48,7 +50,8 @@ export default function ReviewItem({ review }: any) {
                     <View className="flex-row justify-between items-start">
                         <View>
                             <Text className="text-base font-bold text-gray-900">
-                                User #{review.user_id}
+                                {/* User #{review.user_id} */}
+                                {review?.user?.name}
                             </Text>
                             <View className="flex-row items-center mt-1">
                                 {[1, 2, 3, 4, 5].map((star) => (

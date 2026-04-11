@@ -27,46 +27,31 @@ export default function Home() {
       const timer = setTimeout(() => {
         bottomSheetRef.current?.expand()
 
-      }, 100)
+      }, 3000)
 
       return () => clearTimeout(timer)
     }
   }, [selectedPlace])
 
 
-  // const onRefresh = React.useCallback(async () => {
-  //   setRefreshing(true);
 
-  //   await queryClient.invalidateQueries({
-  //     queryKey: ['store-types', selectedPlace?.id]
-  //   })
-  //   await queryClient.invalidateQueries({
-  //     queryKey: ['banners', selectedPlace?.id]
-  //   })
-  //   await queryClient.invalidateQueries({
-  //     queryKey: ['featured-stores', selectedPlace?.id]
-  //   })
-    
-  //   setRefreshing(false)
-  // }, [selectedPlace?.id]);
+  const onRefresh = React.useCallback(async () => {
+    setRefreshing(true)
 
-const onRefresh = React.useCallback(async () => {
-  setRefreshing(true)
+    await queryClient.invalidateQueries({
+      predicate: (query) => {
+        const key = query.queryKey
 
-  await queryClient.invalidateQueries({
-    predicate: (query) => {
-      const key = query.queryKey
+        return (
+          (key[0] === 'store-types' && key[1] === selectedPlace?.id) ||
+          (key[0] === 'featured-stores' && key[1] === selectedPlace?.id) ||
+          key[0] === 'banners'
+        )
+      },
+    })
 
-      return (
-        (key[0] === 'store-types' && key[1] === selectedPlace?.id) ||
-        (key[0] === 'featured-stores' && key[1] === selectedPlace?.id) ||
-        key[0] === 'banners'
-      )
-    },
-  })
-
-  setRefreshing(false)
-}, [selectedPlace?.id])
+    setRefreshing(false)
+  }, [selectedPlace?.id])
 
 
 
@@ -74,7 +59,7 @@ const onRefresh = React.useCallback(async () => {
     <>
       <Layout>
         <HomeHeader onOpenPlace={() => bottomSheetRef.current?.expand()} />
-        <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />} >
+        <ScrollView className='flex-1' refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />} >
           <HomeSearch />
           <SlideShow />
           {/* <ResetPlaceButton /> */}

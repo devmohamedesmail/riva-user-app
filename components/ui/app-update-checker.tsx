@@ -3,7 +3,7 @@ import { useSetting } from "@/hooks/useSetting";
 import BottomSheet from "@gorhom/bottom-sheet";
 import Constants from "expo-constants";
 import React, { useEffect, useRef } from "react";
-import {  Linking, View, TouchableOpacity } from "react-native";
+import { Linking, View, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
 import Text from "./text";
 import Button from './button';
@@ -17,8 +17,12 @@ export default function AppUpdateChecker() {
 
 
     useEffect(() => {
-        checkUpdate();
-    }, []);
+        const timer = setTimeout(() => {
+            checkUpdate();
+        }, 5000);
+
+        return () => clearTimeout(timer);
+    }, [settings]);
 
     const checkUpdate = () => {
         if (!settings?.version || !version) return;
@@ -59,10 +63,10 @@ export default function AppUpdateChecker() {
                         </Text>
                     </TouchableOpacity> */}
                     <Button
-                
-                    className='w-full'
-                    title={t('update.button')}
-                    onPress={() => Linking.openURL("https://play.google.com/store/apps/details?id=com.dev.mohamed.esmail.tawsilaapp")}
+
+                        className='w-full'
+                        title={t('update.button')}
+                        onPress={() => Linking.openURL("https://play.google.com/store/apps/details?id=com.dev.mohamed.esmail.tawsilaapp")}
                     />
                 </View>
             </BottomPaper>

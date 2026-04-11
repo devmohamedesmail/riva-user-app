@@ -5,12 +5,13 @@ import Layout from '@/components/ui/layout'
 import ProductsHeader from '@/components/screens/products/products-header'
 import CategoriesSection from '@/components/screens/stores/categories-section'
 import Loading from '@/components/ui/loading'
-import { FlatList, View, Text, Pressable } from 'react-native'
+import { FlatList, View , Pressable } from 'react-native'
 import ProductCard from '@/components/screens/products/product-card'
 import ProductListCard from '@/components/screens/products/product-list-card'
 import NoProducts from '@/components/screens/products/no-products'
 import { Ionicons } from "@expo/vector-icons"
 import { useStoreProducts } from '@/hooks/useStoreProducts'
+import Text from '@/components/ui/text'
 
 
 
@@ -38,7 +39,7 @@ export default function Products() {
 
 
       <View className="flex-row justify-between items-center px-4 pt-1 pb-3">
-        <Text className="text-gray-600 dark:text-gray-300 font-cairo-bold">
+        <Text className="text-gray-600 dark:text-gray-300 cairoBold">
            {t("stores.total")} : {filteredProducts?.length || 0}
         </Text>
         <View className="flex-row items-center space-x-2 gap-2">

@@ -18,9 +18,9 @@ export default function Layout() {
               
                 tabBarStyle: {
                     backgroundColor: colorScheme === 'dark' ? colors.dark.background : colors.light.background,
-                    height: 70,
-                    paddingBottom: 10,
-                    paddingTop: 10,
+                    // height: 70,
+                    // paddingBottom: 10,
+                    // paddingTop: 10,
                 },
                 tabBarLabelStyle: {
                     fontFamily: i18n.language === 'ar' ? 'Cairo_400Regular' : 'Poppins_400Regular',

@@ -4,12 +4,11 @@ import { useRouter } from 'expo-router'
 import { Plus } from 'lucide-react-native'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Image, Pressable, Text, TouchableOpacity, View } from 'react-native'
-import Toast from 'react-native-toast-message'
+import { Image, Pressable,TouchableOpacity, View } from 'react-native'
 import { useColorScheme } from 'nativewind'
-import { Alert } from 'react-native'
 import { useAddToCart } from '@/hooks/useAddToCart'
 import AddCartModal from '@/components/ui/add-cart-modal'
+import  Text  from '@/components/ui/text'
 interface Attribute {
     id: number;
     name: string;
@@ -210,12 +209,12 @@ export default function ResultCardItem({ item }: { item: Product }) {
                     <View className="flex-row items-center justify-between mt-1">
                         {getPriceDisplay()}
 
-                        <TouchableOpacity
+                        <Pressable
                             onPress={handleAddButtonPress}
 
                             className='bg-primary/10 dark:bg-primary-dark/20 p-2 rounded-full active:bg-primary/20'>
                             <Plus color="#fd4a12" size={18} />
-                        </TouchableOpacity>
+                        </Pressable>
                     </View>
                 </View>
             </Pressable>

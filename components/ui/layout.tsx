@@ -5,7 +5,9 @@ import AppUpdateChecker from './app-update-checker';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <SafeAreaView edges={["right", "left", "bottom"]} className={`flex-1 bg-background dark:bg-background-dark`}>
+    <SafeAreaView
+      edges={["right", "left"]}
+      className={`flex-1 bg-background dark:bg-background-dark`}>
       <StatusBar style="auto" />
       {children}
       <AppUpdateChecker />

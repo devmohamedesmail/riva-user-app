@@ -11,7 +11,7 @@ export default function PlacesBottomPaper({bottomSheetRef}:any) {
   return (
      <BottomPaper ref={bottomSheetRef} snapPoints={['60%']}>
         <View className="flex-1 px-5 pb-8">
-          <Text className="text-xl font-bold mb-4 text-center text-black dark:text-white arabic-font-bold mt-2">
+          <Text className="text-xl cairoBold mb-4 text-center text-black dark:text-white arabic-font-bold mt-2">
             {t("common.select_place")}
           </Text>
 
