@@ -1,27 +1,25 @@
 import { useRouter } from 'expo-router'
 import React from 'react'
-import { TouchableOpacity, View, Image, Pressable } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
-import { useTranslation } from 'react-i18next'
-import Text from '@/components/ui/text'
+import { View, Pressable } from 'react-native'
 import { Store } from '@/@types/stores'
+import StoreImage from '@/components/ui/store-card/store-image'
+import StoreTitle from '@/components/ui/store-card/store-title'
+import StoreRating from '@/components/ui/store-card/store-rating'
+import StoreReview from '@/components/ui/store-card/store-review'
 
 
 
 
 
-export default function StoreCard({ item }: { item: Store }) {
-  const { t } = useTranslation()
+export default function StoreCard({ store }: { store: Store }) {
   const router = useRouter();
-
-
   return (
     <Pressable
-    
+
       onPress={() => {
         router.push({
           pathname: '/stores/products',
-          params: { storeItem: JSON.stringify(item) }
+          params: { storeItem: JSON.stringify(store) }
         })
 
       }}
@@ -30,43 +28,14 @@ export default function StoreCard({ item }: { item: Store }) {
       <View
         className=' rounded-2xl overflow-hidden bg-white dark:bg-card-dark'
       >
-        <View className='w-full h-48  ' >
-          <Image source={{ uri: item.logo }} className='w-full h-full rounded-2xl' resizeMode='cover' />
-        </View>
+        <StoreImage store={store} />
 
         <View className='px-4 pb-4'>
-
-          <Text className='text-xl mt-3 font-cairo-bold text-black text-center dark:text-white' numberOfLines={1}>
-            {item.name}
-          </Text>
-
-
+          <StoreTitle store={store} />
           <View className='flex-row items-center justify-between mt-2'>
-            <View className='flex flex-row items-center'>
-              <Ionicons name="star" size={14} color="#fd4a12" />
-              <Text className='text-sm font-bold ml-1' style={{ color: '#fd4a12' }}>
-                {parseFloat(item.avg_rating).toFixed(1)}
-              </Text>
-            </View>
-
-
-
-            <View className='flex flex-row items-center '>
-              <Text className='text-xs text-black dark:text-white'>
-
-                ( {item.total_reviews} )
-              </Text>
-              <Text className='ml-1 text-black dark:text-white text-xs'>
-                {t('stores.reviews')}
-              </Text>
-            </View>
-
-
+            <StoreRating store={store} />
+            <StoreReview store={store} />
           </View>
-
-
-         
-
         </View>
       </View>
     </Pressable>

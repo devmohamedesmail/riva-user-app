@@ -1,14 +1,14 @@
+import ErrorMessage from '@/components/ui/error-message'
 import Layout from '@/components/ui/layout'
-import useFeaturedStores from '@/hooks/stores/useFeaturedStores'
-import React from 'react'
-import Text from '@/components/ui/text'
 import Loading from '@/components/ui/loading'
-import { FlatList, Pressable, View } from 'react-native'
-import FeaturedStoreCard from '@/components/screens/home/featured-store-card'
+import FeaturedStoreCard from '@/components/ui/product/featured-store-card'
+import Text from '@/components/ui/text'
+import useFeaturedStores from '@/hooks/stores/useFeaturedStores'
 import { Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
-import ErrorMessage from '@/components/ui/error-message'
+import { FlatList, Pressable, View } from 'react-native'
 
 export default function FeaturedStoresPage() {
     const { data, isLoading, error } = useFeaturedStores()
@@ -25,9 +25,7 @@ export default function FeaturedStoresPage() {
     if (error) {
         return (
             <Layout>
-                <Text className="text-center text-red-500">
-                    حدث خطأ أثناء تحميل المتاجر
-                </Text>
+                <ErrorMessage message={t('common.error_message')} />
             </Layout>
         )
     }
@@ -48,23 +46,23 @@ export default function FeaturedStoresPage() {
             </View>
 
 
-           <View className="flex-1 px-3  ">
-            <FlatList
-                numColumns={2}
-                columnWrapperStyle={{ gap: 6 }}
-                contentContainerStyle={{ gap: 6, marginTop: 10, paddingBottom: 50 }}    
-                data={data}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => (
-                    <FeaturedStoreCard store={item} className="w-1/2 mb-2" />
-                )}
-                ListEmptyComponent={
-                    <Text className="text-center mt-10">
-                        لا يوجد متاجر مميزة
-                    </Text>
-                }
-            />
-           </View>
+            <View className="flex-1 px-3  ">
+                <FlatList
+                    numColumns={2}
+                    columnWrapperStyle={{ gap: 6 }}
+                    contentContainerStyle={{ gap: 6, marginTop: 10, paddingBottom: 50 }}
+                    data={data}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({ item }) => (
+                        <FeaturedStoreCard store={item} className="w-1/2 mb-3" />
+                    )}
+                    ListEmptyComponent={
+                        <Text className="text-center mt-10">
+                            لا يوجد متاجر مميزة
+                        </Text>
+                    }
+                />
+            </View>
         </Layout>
     )
 }

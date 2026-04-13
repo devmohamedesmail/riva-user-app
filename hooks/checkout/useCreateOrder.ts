@@ -11,15 +11,15 @@ import Toast from 'react-native-toast-message';
 import { CartItem } from '@/@types/cart';
 import axios from 'axios';
 import { config } from '@/constants/config';
-import { useSetting } from '@/hooks/common/useSetting';
+import { clearCart } from '@/redux/store';
+import { useAppDispatch } from '@/redux/hooks';
+
 
 export default function useCreateOrder() {
+    const dispatch = useAppDispatch();
     const { t } = useTranslation();
     const cartItems = useAppSelector(selectCartItems);
-    const totalPrice = useAppSelector(selectCartTotalPrice);
-    const { auth } = useAuth();
     const { selectedPlace } = usePlace()
-    const cart = useAppSelector((state) => state.cart);
     const [loading, setLoading] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const { data: areas } = useFetch(`/areas/place/${selectedPlace?.id}`);
@@ -30,7 +30,8 @@ export default function useCreateOrder() {
     const filteredAreas = areas?.filter((area: any) =>
         area.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
-   
+
+
 
 
 
@@ -114,16 +115,27 @@ export default function useCreateOrder() {
                 });
 
                 // ✅ process all requests
-                await Promise.all(requests);
+                // await Promise.all(requests);
+                const results = await Promise.allSettled(requests);
+                const hasError = results.some((r) => r.status === "rejected");
+
+                if (hasError) {
+                    Toast.show({
+                        type: "error",
+                        text1: t("order.orderErrorcreate"),
+                        position: "top",
+                    });
+                    return;
+                }
 
                 setSuccessModalVisible(true);
                 formik.resetForm();
-            } catch (error) {
-
-
+                dispatch(clearCart());
+            } catch (error: any) {
                 Toast.show({
                     type: "error",
                     text1: t("order.orderErrorcreate"),
+                    text2: error.response.data.message || error.message,
                     position: "top",
                 });
             } finally {

@@ -6,13 +6,13 @@ import { calculateDiscount } from '@/helper/getPriceDiscount'
 import { useTranslation } from 'react-i18next'
 import Text from '@/components/ui/text'
 
-export default function ProductImage({ item, store, containerClass="w-full",imageClass = "w-full h-40"
- }: { item: Product, store: Store, containerClass?: string,imageClass?:string }) {
+export default function ProductImage({ item, store, containerClass = "w-full", imageClass = "w-full h-40"
+}: { item: Product, store: any, containerClass?: string, imageClass?: string }) {
     const router = useRouter()
     const { t } = useTranslation()
     const discountPercentage = calculateDiscount(item.price, item.sale_price, item.on_sale);
     return (
-       
+
         <Pressable onPress={() => router.push({
             pathname: "/stores/product-details",
             params: { item: JSON.stringify(item) }

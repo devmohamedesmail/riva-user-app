@@ -1,6 +1,7 @@
 import React from 'react'
-import { Pressable, Text } from 'react-native'
+import { Pressable } from 'react-native'
 import { useTranslation } from 'react-i18next';
+import Text from '@/components/ui/text';
 
 export default function ModalSelectOption({ attrValue, attribute, valueIndex, setSelectedAttribute, isSelected }: any) {
     const { t } = useTranslation();
@@ -22,7 +23,7 @@ export default function ModalSelectOption({ attrValue, attribute, valueIndex, se
             <Text className={`font-medium ${isSelected ? "text-white" : "text-black dark:text-gray-200"}`}>
                 {attrValue.value}
             </Text>
-            <Text className={`font-bold ${isSelected ? "text-white" : "text-primary dark:text-orange-400"}`}>
+            <Text className={`cairoBold ${isSelected ? "text-white" : "text-primary dark:text-orange-400"}`}>
                 {attrValue.price} {t("common.currency")}
             </Text>
         </Pressable>

@@ -2,10 +2,10 @@ import React from 'react'
 import { View, Text, ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
 import { useTranslation } from 'react-i18next';
-import AddCartModalAction from './add-cart-modal-action';
-import QuantityControlSection from './quantity-control-section';
-import AddCartModalHeader from './add-cart-modal-header';
-import ModalSelectOption from './modal-select-option';
+import AddCartModalAction from '@/components/ui/cart/add-cart-modal-action';
+import QuantityControlSection from '@/components/ui/cart/quantity-control-section';
+import AddCartModalHeader from '@/components/ui/cart/add-cart-modal-header';
+import ModalSelectOption from '@/components/ui/cart/modal-select-option';
 
 export default function AddCartModal({
     isModalVisible,

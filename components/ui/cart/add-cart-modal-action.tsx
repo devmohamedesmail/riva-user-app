@@ -1,7 +1,9 @@
 import React from 'react'
-import { Pressable, Text } from 'react-native'
+import { Pressable } from 'react-native'
 import Toast from 'react-native-toast-message'
 import { useTranslation } from 'react-i18next';
+import Text from '@/components/ui/text';
+
 export default function AddCartModalAction({ item, selectedAttribute, handleAddToCart, modalQuantity, toggleModal }: any) {
     const { t } = useTranslation();
 
@@ -31,7 +33,7 @@ export default function AddCartModalAction({ item, selectedAttribute, handleAddT
                 }`}
             disabled={!!(item.attributes && item.attributes.length > 0 && !selectedAttribute)}
         >
-            <Text className="text-white text-center font-bold text-lg">
+            <Text className="text-white text-center cairoBold text-lg">
                 {t("cart.confirmAdd")}
             </Text>
         </Pressable>

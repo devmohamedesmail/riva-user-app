@@ -19,7 +19,7 @@ export const useStoreProducts = (storeId: string) => {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
     const { data , isLoading } = useQuery({
-        queryKey: ["store-products"],
+        queryKey: ["store-products", storeId],
         queryFn: async () => {
             const response = await axios.get(`${config.URL}/stores/${storeId}/products`)
             return response.data.data

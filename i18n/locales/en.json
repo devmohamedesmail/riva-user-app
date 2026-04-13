@@ -391,7 +391,8 @@
     "areaRequired":"Area is required",
     "customer_name":"Customer Name",
     "enterCustomerName":"Enter your Name",
-    "customerNameRequired":"Customer Name is required"
+    "customerNameRequired":"Customer Name is required",
+    "storesCount":"Your Order From {{count}} Stores"
   },
   "orders": {
     "myOrders": "My Orders",

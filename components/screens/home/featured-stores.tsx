@@ -1,19 +1,19 @@
+import { Store } from '@/@types/stores'
+import SectionTitle from '@/components/ui/section-title'
 import Skeleton from '@/components/ui/skeleton'
+import useFeaturedStores from '@/hooks/stores/useFeaturedStores'
 import { useRouter } from 'expo-router'
 import { useTranslation } from 'react-i18next'
 import { ScrollView, View } from 'react-native'
-import { Store } from '@/@types/stores'
-import SectionTitle from '@/components/ui/section-title'
-import FeaturedStoreCard from './featured-store-card'
-import useFeaturedStores from '@/hooks/stores/useFeaturedStores'
+import FeaturedStoreCard from '../../ui/product/featured-store-card'
 
 export default function FeaturedStores() {
     const { t } = useTranslation()
     const router = useRouter()
     const { data, isLoading } = useFeaturedStores()
-   
 
-  
+
+
 
     if (isLoading) {
         return (

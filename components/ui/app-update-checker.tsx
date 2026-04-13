@@ -13,6 +13,7 @@ export default function AppUpdateChecker() {
     const bottomSheetRef = useRef<BottomSheet>(null);
     const { settings } = useSetting()
     const version = Constants.expoConfig?.version;
+   
 
 
 
@@ -27,11 +28,15 @@ export default function AppUpdateChecker() {
     const checkUpdate = () => {
         if (!settings?.version || !version) return;
 
+        const isForceUpdate = settings?.user_force_update;
+        const isOutdated = version !== settings.version;
+
         // console.log("current:", version);
         // console.log("latest:", settings.version);
 
-        if (version !== settings.version) {
+        if (isForceUpdate) {
             bottomSheetRef.current?.expand();
+
         }
     };
 

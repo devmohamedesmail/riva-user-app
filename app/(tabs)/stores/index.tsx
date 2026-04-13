@@ -11,7 +11,7 @@ import { useStores } from '@/hooks/stores/useStores'
 export default function Stores() {
     const { storeType } = useLocalSearchParams();
     const parsedStoreType = JSON.parse(storeType as string);
-    const {data,isLoading,searchQuery,setSearchQuery,filteredStores}=useStores(parsedStoreType.id)
+    const { data, isLoading, searchQuery, setSearchQuery, filteredStores } = useStores(parsedStoreType.id)
     return (
         <Layout>
             <StoresHeader
@@ -26,7 +26,7 @@ export default function Stores() {
                         data={filteredStores || []}
                         numColumns={2}
                         keyExtractor={(item) => item.id.toString()}
-                        renderItem={({ item }) => <StoreCard item={item} />}
+                        renderItem={({ item }) => <StoreCard store={item} />}
                         columnWrapperStyle={{ gap: 2 }}
                         contentContainerStyle={{
                             paddingHorizontal: 5,

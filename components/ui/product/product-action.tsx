@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Pressable, Text, View } from 'react-native'
+import { Pressable, View } from 'react-native'
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import AddCartModal from '../add-cart-modal';
+import AddCartModal from '@/components/ui/cart/add-cart-modal';
 import { useAddToCart } from '@/hooks/stores/useAddToCart';
 
 export default function ProductAction({ item, store }: { item: any; store: any }) {

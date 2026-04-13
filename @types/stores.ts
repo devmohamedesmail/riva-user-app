@@ -9,7 +9,7 @@ export interface Store {
     start_time: string
     end_time: string
     devlivery_time: string | null
-    avg_rating: string
+    avg_rating: number
     total_reviews: number
     is_active: boolean
     is_verified: boolean
@@ -41,13 +41,26 @@ export interface Product {
         name: string
         logo: string
         rating: number
+        total_reviews: number
+        is_active: boolean
+        is_verified: boolean
+        is_featured: boolean
+        business_type_id: number
+        address: string
+        phone: string
+        start_time: string
+        end_time: string
+        
     }
+ 
   category: {
     id: number;
     name: string;
     description: string;
   };
 }
+
+
 
 // export interface Attribute {
 //   name: string;

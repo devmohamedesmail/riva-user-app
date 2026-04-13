@@ -1,0 +1,46 @@
+  const getPriceDisplay = () => {
+        const hasAttributes =
+            item.attributes &&
+            item.attributes.length > 0 &&
+            item.attributes[0].values.length > 0;
+
+        let displayPrice = item.price;
+        let originalPrice = null;
+
+        if (hasAttributes) {
+            const prices =
+                item.attributes?.flatMap(attr =>
+                    attr.values.map(v => v.price)
+                ) ?? [];
+
+            const minPrice =
+                prices.length > 0 ? Math.min(...prices) : item.price;
+
+            displayPrice = minPrice;
+        }
+
+        if (item.on_sale && item.sale_price) {
+            displayPrice = item.sale_price;
+            originalPrice = item.price;
+        }
+
+        return (
+            <View className="flex-row items-center flex-wrap">
+                {hasAttributes && (
+                    <Text className="text-xs text-gray-500 dark:text-gray-400 mr-1">
+                        {t('common.starts_from') || 'يبدأ من'}
+                    </Text>
+                )}
+
+                <Text className="text-base font-bold text-primary dark:text-primary-dark">
+                    {displayPrice} {config.CurrencySymbol}
+                </Text>
+
+                {originalPrice && (
+                    <Text className="text-xs text-gray-400 line-through ml-2">
+                        {originalPrice} {config.CurrencySymbol}
+                    </Text>
+                )}
+            </View>
+        );
+    };

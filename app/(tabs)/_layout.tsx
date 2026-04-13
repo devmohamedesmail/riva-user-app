@@ -13,11 +13,11 @@ export default function Layout() {
         <Tabs
             screenOptions={{
                 headerShown: false,
-                tabBarActiveTintColor: colors.light.tint, // active tab color
+                tabBarActiveTintColor: colors.light.tint, 
                 tabBarInactiveTintColor: 'gray',
                 tabBarStyle: {
                     backgroundColor: colorScheme === 'dark' ? colors.dark.background : colors.light.background,
-                    // height: 70,
+                    // height: 90,
                     // paddingBottom: 10,
                     // paddingTop: 10,
                 },

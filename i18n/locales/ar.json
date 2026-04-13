@@ -391,7 +391,8 @@
     "areaRequired": "المنطقة مطلوبة",
     "customer_name":" الاسم ",
     "enterCustomerName":" أدخل اسمك  ",
-    "customerNameRequired":"الاسم مطلوب"
+    "customerNameRequired":"الاسم مطلوب",
+    "storesCount":"طلبك من {{count}} اماكن مختلفه"
   },
   "orders": {
     "myOrders": "طلباتي",

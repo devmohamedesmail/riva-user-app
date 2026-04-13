@@ -3,7 +3,6 @@ import CartHeader from '@/components/screens/cart/cart-header'
 import CartItem from '@/components/screens/cart/cart-item'
 import CartSummary from '@/components/screens/cart/cart-summery'
 import EmptyCart from '@/components/screens/cart/empty-cart'
-import Header from '@/components/ui/header'
 import Layout from '@/components/ui/layout'
 import { selectCart, selectCartItems, useAppSelector } from '@/redux/hooks'
 import React from 'react'
@@ -26,8 +25,8 @@ export default function Cart() {
           contentContainerStyle={{ paddingBottom: 20 }}
         >
           <View className="px-4 pt-4 pb-8">
-            {cart.items.map((item) => (
-              <CartItem key={item.id} item={item} />
+            {cart.items.map((item, index) => (
+              <CartItem key={`${item.id}-${index}`} item={item} />
             ))}
           </View>
         </ScrollView>
